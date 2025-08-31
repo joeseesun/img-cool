@@ -1,0 +1,138 @@
+@import "open-color/open-color.scss";
+@import "../styles/variables.module.scss";
+
+.drawnix {
+  .tool-icon {
+    border-radius: var(--border-radius-md);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+
+    &__hidden {
+      display: none !important;
+    }
+
+    @include toolbarButtonColorStates;
+  }
+
+  .tool-icon--plain {
+    background-color: transparent;
+    .tool-icon__icon {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .tool-icon_type_radio,
+  .tool-icon_type_checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .tool-icon__icon {
+    box-sizing: border-box;
+    width: var(--lg-button-size);
+    height: var(--lg-button-size);
+    color: var(--icon-fill-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: var(--border-radius-md);
+
+    & + .tool-icon__label {
+      margin-inline-start: 0;
+    }
+
+    svg {
+      stroke: currentColor;
+      position: relative;
+      width: var(--lg-icon-size);
+      height: var(--lg-icon-size);
+      outline: none;
+    }
+  }
+
+  .tool-icon_type_button {
+    padding: 0;
+    border: none;
+    margin: 0;
+    font-size: inherit;
+    background-color: initial;
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px var(--color-primary);
+      outline: none;
+    }
+
+    &.tool-icon--selected {
+      background: var(--color-surface-primary-container);
+      svg {
+        color: var(--color-on-primary-container);
+      }
+    }
+
+    &:active {
+      background-color: var(--button-gray-3);
+    }
+
+    &:disabled {
+      cursor: default;
+
+      &:active,
+      &:focus-visible,
+      &:hover {
+        background-color: initial;
+        border: none;
+        box-shadow: none;
+      }
+
+      svg {
+        color: var(--color-disabled);
+      }
+    }
+
+    &--show {
+      visibility: visible;
+    }
+
+    &--hide {
+      display: none !important;
+    }
+  }
+
+  .tool-icon__label {
+    display: flex;
+    align-items: center;
+    color: var(--icon-fill-color);
+    font-family: var(--ui-font);
+    margin: 0 0.8em;
+    text-overflow: ellipsis;
+  }
+
+  .tool-icon_size_small .tool-icon__icon {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.8em;
+    svg {
+      width: var(--default-icon-size);
+      height: var(--default-icon-size);
+    }
+  }
+
+  .tool-icon__keybinding {
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    font-size: 0.625rem;
+    color: var(--keybinding-color);
+    font-family: var(--ui-font);
+    user-select: none;
+  }
+}
