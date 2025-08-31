@@ -1,0 +1,63 @@
+{
+	"name": "@xhmikosr/bin-wrapper",
+	"version": "13.0.5",
+	"description": "Binary wrapper that makes your programs seamlessly available as local dependencies",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/XhmikosR/bin-wrapper.git"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"author": {
+		"name": "Kevin Mårtensson",
+		"email": "kevinmartensson@gmail.com",
+		"url": "https://github.com/kevva"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"ava": "ava",
+		"lint": "xo",
+		"xo": "xo",
+		"fix": "xo --fix",
+		"test": "npm run xo && npm run ava",
+		"test-ci": "c8 ava"
+	},
+	"main": "index.js",
+	"type": "module",
+	"exports": {
+		".": "./index.js"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"bin",
+		"check",
+		"local",
+		"wrapper"
+	],
+	"dependencies": {
+		"@xhmikosr/bin-check": "^7.0.3",
+		"@xhmikosr/downloader": "^15.0.1",
+		"@xhmikosr/os-filter-obj": "^3.0.0",
+		"bin-version-check": "^5.1.0"
+	},
+	"devDependencies": {
+		"ava": "^6.1.2",
+		"c8": "^9.1.0",
+		"isexe": "^2.0.0",
+		"nock": "^13.5.4",
+		"path-exists": "^5.0.0",
+		"tempy": "^3.1.0",
+		"xo": "^0.58.0"
+	},
+	"xo": {
+		"rules": {
+			"unicorn/prevent-abbreviations": "off"
+		}
+	}
+}

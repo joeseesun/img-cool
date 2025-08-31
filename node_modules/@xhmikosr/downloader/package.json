@@ -1,0 +1,68 @@
+{
+	"name": "@xhmikosr/downloader",
+	"version": "15.0.1",
+	"description": "Download and extract files",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/XhmikosR/download.git"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"author": {
+		"email": "kevinmartensson@gmail.com",
+		"name": "Kevin Mårtensson",
+		"url": "https://github.com/kevva"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"ava": "ava",
+		"lint": "xo",
+		"xo": "xo",
+		"fix": "xo --fix",
+		"test": "npm run xo && npm run ava",
+		"test-ci": "c8 ava"
+	},
+	"main": "index.js",
+	"type": "module",
+	"exports": {
+		".": "./index.js"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"download",
+		"extract",
+		"http",
+		"request",
+		"url"
+	],
+	"dependencies": {
+		"@xhmikosr/archive-type": "^7.0.0",
+		"@xhmikosr/decompress": "^10.0.1",
+		"content-disposition": "^0.5.4",
+		"defaults": "^3.0.0",
+		"ext-name": "^5.0.0",
+		"file-type": "^19.0.0",
+		"filenamify": "^6.0.0",
+		"get-stream": "^6.0.1",
+		"got": "^13.0.0"
+	},
+	"devDependencies": {
+		"ava": "^6.1.2",
+		"c8": "^9.1.0",
+		"is-zip": "^1.0.0",
+		"nock": "^13.5.4",
+		"path-exists": "^5.0.0",
+		"xo": "^0.58.0"
+	},
+	"xo": {
+		"rules": {
+			"unicorn/prevent-abbreviations": "off"
+		}
+	}
+}

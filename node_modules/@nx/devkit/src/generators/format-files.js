@@ -1,0 +1,88 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.formatFiles = void 0;
+const path = require("path");
+const devkit_exports_1 = require("nx/src/devkit-exports");
+const devkit_internals_1 = require("nx/src/devkit-internals");
+/**
+ * Formats all the created or updated files using Prettier
+ * @param tree - the file system tree
+ */
+async function formatFiles(tree) {
+    let prettier;
+    try {
+        prettier = await Promise.resolve().then(() => require('prettier'));
+    }
+    catch { }
+    sortTsConfig(tree);
+    if (!prettier)
+        return;
+    const files = new Set(tree.listChanges().filter((file) => file.type !== 'DELETE'));
+    const changedPrettierInTree = getChangedPrettierConfigInTree(tree);
+    await Promise.all(Array.from(files).map(async (file) => {
+        try {
+            const systemPath = path.join(tree.root, file.path);
+            const resolvedOptions = await prettier.resolveConfig(systemPath, {
+                editorconfig: true,
+            });
+            const options = {
+                ...resolvedOptions,
+                ...changedPrettierInTree,
+                filepath: systemPath,
+            };
+            if (file.path.endsWith('.swcrc')) {
+                options.parser = 'json';
+            }
+            const support = await prettier.getFileInfo(systemPath, options);
+            if (support.ignored || !support.inferredParser) {
+                return;
+            }
+            tree.write(file.path, 
+            // In prettier v3 the format result is a promise
+            await prettier.format(file.content.toString('utf-8'), options));
+        }
+        catch (e) {
+            console.warn(`Could not format ${file.path}. Error: "${e.message}"`);
+        }
+    }));
+}
+exports.formatFiles = formatFiles;
+function sortTsConfig(tree) {
+    try {
+        const tsConfigPath = getRootTsConfigPath(tree);
+        if (!tsConfigPath) {
+            return;
+        }
+        (0, devkit_exports_1.updateJson)(tree, tsConfigPath, (tsconfig) => ({
+            ...tsconfig,
+            compilerOptions: {
+                ...tsconfig.compilerOptions,
+                paths: (0, devkit_internals_1.sortObjectByKeys)(tsconfig.compilerOptions.paths),
+            },
+        }));
+    }
+    catch (e) {
+        // catch noop
+    }
+}
+function getRootTsConfigPath(tree) {
+    for (const path of ['tsconfig.base.json', 'tsconfig.json']) {
+        if (tree.exists(path)) {
+            return path;
+        }
+    }
+    return null;
+}
+function getChangedPrettierConfigInTree(tree) {
+    if (tree.listChanges().find((file) => file.path === '.prettierrc')) {
+        try {
+            return (0, devkit_exports_1.readJson)(tree, '.prettierrc');
+        }
+        catch {
+            return null;
+        }
+    }
+    else {
+        return null;
+    }
+}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/swc/index.ts"],"sourcesContent":["import swcDir from \"./dir\";\n\nexport { swcDir };\n"],"names":["swcDir"],"mappings":";;;;+BAESA;;;eAAAA,YAAM;;;4DAFI"}

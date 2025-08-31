@@ -1,0 +1,30 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = default_1;
+const devkit_1 = require("@nx/devkit");
+/**
+ * Removes deprecated
+ * @param tree
+ */
+async function default_1(tree) {
+    const projects = (0, devkit_1.getProjects)(tree);
+    for (const [projectName, projectConfig] of projects) {
+        let shouldUpdate = false;
+        if (!projectConfig.targets)
+            continue;
+        for (const target of Object.values(projectConfig.targets)) {
+            if (target.executor?.startsWith('@nx/') &&
+                target.options &&
+                ('buildableProjectDepsInPackageJsonType' in target.options ||
+                    'updateBuildableProjectDepsInPackageJson' in target.options)) {
+                delete target.options['buildableProjectDepsInPackageJsonType'];
+                delete target.options['updateBuildableProjectDepsInPackageJson'];
+                shouldUpdate = true;
+            }
+        }
+        if (shouldUpdate) {
+            (0, devkit_1.updateProjectConfiguration)(tree, projectName, projectConfig);
+        }
+    }
+    await (0, devkit_1.formatFiles)(tree);
+}

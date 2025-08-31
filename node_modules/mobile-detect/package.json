@@ -1,0 +1,50 @@
+{
+  "name": "mobile-detect",
+  "version": "1.4.5",
+  "description": "Device detection (phone, tablet, desktop, mobile grade, os, versions)",
+  "main": "mobile-detect.js",
+  "typings": "mobile-detect",
+  "scripts": {
+    "test": "grunt jasmine_node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hgoebl/mobile-detect.js"
+  },
+  "homepage": "https://hgoebl.github.io/mobile-detect.js/",
+  "keywords": [
+    "useragent",
+    "mobile",
+    "phone",
+    "tablet",
+    "detect",
+    "device",
+    "browser",
+    "version",
+    "mobilegrade",
+    "sniff"
+  ],
+  "author": {
+    "name": "Heinrich Goebl",
+    "email": "hgoebl@goebl.com",
+    "url": "https://www.goebl.com/"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~1.0.1",
+    "grunt-contrib-concat": "~1.0.1",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-uglify": "~2.0.0",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-exec": "~1.0.0",
+    "grunt-jasmine-node": "~0.3.1",
+    "grunt-jsdoc": "~2.2.0",
+    "jshint": "2.9.2",
+    "moment": "^2.14.1",
+    "mote": "0.2.0",
+    "uglify-js": "~2.7.0",
+    "wordwrap": "1.0.0"
+  }
+}

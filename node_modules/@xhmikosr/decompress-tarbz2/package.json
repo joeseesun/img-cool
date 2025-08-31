@@ -1,0 +1,62 @@
+{
+	"name": "@xhmikosr/decompress-tarbz2",
+	"version": "8.0.2",
+	"description": "decompress tar.bz2 plugin",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/XhmikosR/decompress-tarbz2.git"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"author": {
+		"name": "Kevin Mårtensson",
+		"email": "kevinmartensson@gmail.com",
+		"url": "https://github.com/kevva"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"ava": "ava",
+		"lint": "xo",
+		"xo": "xo",
+		"fix": "xo --fix",
+		"test": "npm run ava"
+	},
+	"main": "index.js",
+	"type": "module",
+	"exports": {
+		".": "./index.js"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"bz2",
+		"decompress",
+		"decompressplugin",
+		"extract",
+		"tar",
+		"tar.bz2",
+		"tarbz2"
+	],
+	"dependencies": {
+		"@xhmikosr/decompress-tar": "^8.0.1",
+		"file-type": "^19.6.0",
+		"is-stream": "^2.0.1",
+		"seek-bzip": "^2.0.0",
+		"unbzip2-stream": "^1.4.3"
+	},
+	"devDependencies": {
+		"ava": "^6.2.0",
+		"is-jpg": "^3.0.0",
+		"xo": "^0.60.0"
+	},
+	"xo": {
+		"rules": {
+			"unicorn/prevent-abbreviations": "off"
+		}
+	}
+}

@@ -1,0 +1,41 @@
+import * as React from 'react';
+<% if (!minimal) { %>
+import NxWelcome from "./nx-welcome";
+<% } %>
+import { Link, Route, Routes } from 'react-router-dom';
+<% if (dynamic) { %>
+import { loadRemoteModule } from '@nx/react/mf';
+<% } %>
+
+<% if (remotes.length > 0) { %>
+<% remotes.forEach(function(r) { %>
+<% if (dynamic) { %>
+ const <%= r.className %> = React.lazy(() => loadRemoteModule('<%= r.fileName %>', './Module'))
+<% } else  { %>
+ const <%= r.className %> = React.lazy(() => import('<%= r.fileName %>/Module'));
+<% } %>
+ <% }); %>
+<% } %>
+
+export function App() {
+  return (
+    <React.Suspense fallback={null}>
+     <ul>
+       <li><Link to="/">Home</Link></li>
+       <% remotes.forEach(function(r) { %>
+         <li><Link to="/<%=r.fileName%>"><%=r.className%></Link></li>
+       <% }); %>
+     </ul>
+     <Routes>
+       <% if (!minimal) { %>
+       <Route path="/" element={<NxWelcome title="<%= projectName %>"/>} />
+       <% } %>
+       <% remotes.forEach(function(r) { %>
+         <Route path="/<%=r.fileName%>" element={<<%= r.className %>/>} />
+       <% }); %>
+     </Routes>
+    </React.Suspense>
+  );
+}
+
+export default App;

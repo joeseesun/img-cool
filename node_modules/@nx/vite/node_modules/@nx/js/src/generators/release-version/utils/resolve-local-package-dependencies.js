@@ -1,0 +1,77 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.resolveLocalPackageDependencies = resolveLocalPackageDependencies;
+const devkit_1 = require("@nx/devkit");
+const semver_1 = require("semver");
+const package_1 = require("./package");
+const resolve_version_spec_1 = require("./resolve-version-spec");
+function resolveLocalPackageDependencies(tree, projectGraph, filteredProjects, projectNameToPackageRootMap, resolvePackageRoot, includeAll = false) {
+    const localPackageDependencies = {};
+    const projectNodeToPackageMap = new Map();
+    const projects = includeAll
+        ? Object.values(projectGraph.nodes)
+        : filteredProjects;
+    // Iterate through the projects being released and resolve any relevant package.json data
+    for (const projectNode of projects) {
+        // Resolve the package.json path for the project, taking into account any custom packageRoot settings
+        let packageRoot = projectNameToPackageRootMap.get(projectNode.name);
+        // packageRoot wasn't added to the map yet, try to resolve it dynamically
+        if (!packageRoot && includeAll) {
+            packageRoot = resolvePackageRoot(projectNode);
+            if (!packageRoot) {
+                continue;
+            }
+            // Append it to the map for later use within the release version generator
+            projectNameToPackageRootMap.set(projectNode.name, packageRoot);
+        }
+        const packageJsonPath = (0, devkit_1.joinPathFragments)(packageRoot, 'package.json');
+        if (!tree.exists(packageJsonPath)) {
+            continue;
+        }
+        const packageJson = (0, devkit_1.readJson)(tree, packageJsonPath);
+        const pkg = new package_1.Package(packageJson, devkit_1.workspaceRoot, packageRoot);
+        projectNodeToPackageMap.set(projectNode, pkg);
+    }
+    // populate local npm package dependencies
+    for (const projectDeps of Object.values(projectGraph.dependencies)) {
+        const workspaceDeps = projectDeps.filter((dep) => !isExternalNpmDependency(dep.target) &&
+            !isExternalNpmDependency(dep.source));
+        for (const dep of workspaceDeps) {
+            const source = projectGraph.nodes[dep.source];
+            const target = projectGraph.nodes[dep.target];
+            if (!source ||
+                !projectNodeToPackageMap.has(source) ||
+                !target ||
+                !projectNodeToPackageMap.has(target)) {
+                // only relevant for dependencies between two workspace projects with Package objects
+                continue;
+            }
+            const sourcePackage = projectNodeToPackageMap.get(source);
+            const targetPackage = projectNodeToPackageMap.get(target);
+            const sourceNpmDependency = sourcePackage.getLocalDependency(targetPackage.name);
+            if (!sourceNpmDependency) {
+                continue;
+            }
+            const targetVersionSpec = (0, resolve_version_spec_1.resolveVersionSpec)(targetPackage.name, targetPackage.version, sourceNpmDependency.spec, sourcePackage.location);
+            const targetMatchesRequirement = 
+            // For file: and workspace: protocols the targetVersionSpec could be a path, so we check if it matches the target's location
+            targetVersionSpec === targetPackage.location ||
+                (0, semver_1.satisfies)(targetPackage.version, targetVersionSpec);
+            if (targetMatchesRequirement) {
+                // track only local package dependencies that are satisfied by the target's version
+                localPackageDependencies[dep.source] = [
+                    ...(localPackageDependencies[dep.source] || []),
+                    {
+                        ...dep,
+                        dependencyCollection: sourceNpmDependency.collection,
+                        rawVersionSpec: sourceNpmDependency.spec,
+                    },
+                ];
+            }
+        }
+    }
+    return localPackageDependencies;
+}
+function isExternalNpmDependency(dep) {
+    return dep.startsWith('npm:');
+}

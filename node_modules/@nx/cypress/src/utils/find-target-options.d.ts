@@ -1,0 +1,17 @@
+import { TargetConfiguration, Tree } from '@nx/devkit';
+interface FindTargetOptions {
+    project: string;
+    /**
+     * contains buildable target such as react app or angular app
+     * <project>:<target>[:<configuration>]
+     */
+    buildTarget?: string;
+    validExecutorNames: Set<string>;
+    skipGetOptions?: boolean;
+}
+export interface FoundTarget {
+    config?: TargetConfiguration;
+    target: string;
+}
+export declare function findBuildConfig(tree: Tree, options: FindTargetOptions): Promise<FoundTarget>;
+export {};

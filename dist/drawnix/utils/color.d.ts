@@ -1,0 +1,10 @@
+export declare function applyOpacityToHex(hexColor: string, opacity: number): string;
+export declare function hexAlphaToOpacity(hexColor: string): number;
+export declare function isValidColor(color: string): boolean;
+export declare function removeHexAlpha(hexColor: string): string;
+export declare function isTransparent(color?: string): boolean;
+export declare function isWhite(color?: string): boolean;
+export declare function isFullyTransparent(opacity: number): boolean;
+export declare function isFullyOpaque(opacity: number): boolean;
+export declare function isNoColor(value: string): boolean;
+export declare function isDefaultStroke(color?: string): boolean;

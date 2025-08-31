@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.targetOptionsToCliMap = void 0;
+exports.targetOptionsToCliMap = {
+    headed: 'headed',
+    headless: 'headless',
+    key: 'key',
+    record: 'record',
+    parallel: 'parallel',
+    browser: 'browser',
+    env: 'env',
+    spec: 'spec',
+    ciBuildId: 'ci-build-id',
+    group: 'group',
+    reporter: 'reporter',
+    reporterOptions: 'reporter-options',
+    tag: 'tag',
+    port: 'port',
+    quiet: 'quiet',
+    runnerUi: 'runner-ui',
+};

@@ -1,0 +1,34 @@
+.plait-board-container {
+    .text {
+        foreignObject {
+            overflow-y: auto;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            scrollbar-width: none;
+        }
+    }
+}
+
+.plait-text-container {
+    font-size: 14px;
+    min-height: 20px;
+    line-height: 20px;
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Noto Sans', 'Noto Sans CJK SC', 'Microsoft Yahei', 'Hiragino Sans GB', Arial, sans-serif;
+}
+
+.slate-editable-container {
+    outline: none;
+    padding: 0;
+    cursor: default;
+    & [data-slate-node='element'] {
+        user-select: none;
+    }
+    &[contenteditable="true"] {
+        cursor: text;
+        & [data-slate-node='element'] {
+            user-select: text;
+        }
+    }
+}

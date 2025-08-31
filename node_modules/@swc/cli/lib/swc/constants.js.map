@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/swc/constants.ts"],"sourcesContent":["export const enum CompileStatus {\n    Copied,\n    Compiled,\n    Omitted,\n    Failed,\n}\n"],"names":["CompileStatus"],"mappings":";;;;;;;;;;;UAAkBA;;;;;GAAAA,kBAAAA"}

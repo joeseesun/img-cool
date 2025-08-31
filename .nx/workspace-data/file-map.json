@@ -1,0 +1,2270 @@
+{
+  "version": "6.0",
+  "nxVersion": "19.3.0",
+  "deps": {
+    "@floating-ui/react": "^0.26.24",
+    "@plait-board/markdown-to-drawnix": "^0.0.6",
+    "@plait-board/mermaid-to-drawnix": "^0.0.7",
+    "@plait/common": "^0.84.0",
+    "@plait/core": "^0.84.0",
+    "@plait/draw": "^0.84.0",
+    "@plait/layouts": "^0.84.0",
+    "@plait/mind": "^0.84.0",
+    "@plait/text-plugins": "^0.84.0",
+    "ahooks": "^3.8.0",
+    "browser-fs-access": "^0.35.0",
+    "classnames": "^2.5.1",
+    "localforage": "^1.10.0",
+    "mobile-detect": "^1.4.5",
+    "open-color": "^1.9.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "rxjs": "~7.8.0",
+    "slate": "^0.116.0",
+    "slate-dom": "^0.116.0",
+    "slate-history": "^0.115.0",
+    "slate-react": "^0.116.0",
+    "tslib": "^2.3.0",
+    "@babel/core": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
+    "@nx/cypress": "19.3.0",
+    "@nx/devkit": "19.3.0",
+    "@nx/eslint": "19.3.0",
+    "@nx/eslint-plugin": "19.3.0",
+    "@nx/jest": "19.3.0",
+    "@nx/js": "19.3.0",
+    "@nx/playwright": "19.3.0",
+    "@nx/react": "19.3.0",
+    "@nx/vite": "^20.6.0",
+    "@nx/web": "19.3.0",
+    "@nx/workspace": "19.3.0",
+    "@playwright/test": "^1.36.0",
+    "@swc-node/register": "~1.9.1",
+    "@swc/cli": "^0.6.0",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
+    "@testing-library/react": "15.0.6",
+    "@types/jest": "^29.4.0",
+    "@types/node": "18.16.9",
+    "@types/react": "18.3.1",
+    "@types/react-dom": "18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.3.0",
+    "@typescript-eslint/parser": "^7.3.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "@vitest/ui": "^3.0.8",
+    "babel-jest": "^29.4.1",
+    "eslint": "~8.57.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-playwright": "^0.15.3",
+    "eslint-plugin-react": "7.32.2",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "jest": "^29.4.1",
+    "jest-environment-jsdom": "^29.4.1",
+    "jsdom": "~22.1.0",
+    "nx": "19.3.0",
+    "prettier": "^2.6.2",
+    "sass": "^1.55.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "10.9.1",
+    "typescript": "~5.4.2",
+    "vite": "^6.2.2",
+    "vite-plugin-dts": "^4.5.3",
+    "vitest": "^3.0.8"
+  },
+  "pathMappings": {
+    "@drawnix/drawnix": [
+      "packages/drawnix/src/index.ts"
+    ],
+    "@plait-board/react-board": [
+      "packages/react-board/src/index.ts"
+    ],
+    "@plait-board/react-text": [
+      "packages/react-text/src/index.ts"
+    ]
+  },
+  "nxJsonPlugins": [
+    {
+      "name": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static"
+      }
+    },
+    {
+      "name": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "name": "@nx/playwright/plugin",
+      "options": {
+        "targetName": "e2e"
+      }
+    },
+    {
+      "name": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    }
+  ],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": "dist/react-board/plugins/with-react.d.ts",
+        "hash": "1208191300822583546"
+      },
+      {
+        "file": "README_en.md",
+        "hash": "1789009022337921386"
+      },
+      {
+        "file": "dist/drawnix/utils/common.d.ts",
+        "hash": "16393035672094899570"
+      },
+      {
+        "file": ".nx/workspace-data/eslint-4393011795395336301.hash",
+        "hash": "13986874754832593996"
+      },
+      {
+        "file": "dist/apps/web/assets/index.dom-C3-224fz.js",
+        "hash": "11314244321274480657"
+      },
+      {
+        "file": ".git/index.lock",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "dist/apps/web/assets/index-3862675e-D4LPqgXm.js",
+        "hash": "11596448559870755934"
+      },
+      {
+        "file": "dist/react-text/plugins/index.d.ts",
+        "hash": "9622304948093603198"
+      },
+      {
+        "file": "dist/apps/web/sitemap.xml",
+        "hash": "2594396978836474258"
+      },
+      {
+        "file": "dist/apps/web/assets/styles-6aaf32cf-sAb-rvbD.js",
+        "hash": "12967643711489596219"
+      },
+      {
+        "file": "dist/drawnix/constants/color.d.ts",
+        "hash": "6429291641937428339"
+      },
+      {
+        "file": "dist/apps/web/assets/line-7NIJnmEj.js",
+        "hash": "13601234336156969701"
+      },
+      {
+        "file": "dist/drawnix/plugins/with-image.d.ts",
+        "hash": "11729429325794187726"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/zoom-toolbar.d.ts",
+        "hash": "3842652226126648080"
+      },
+      {
+        "file": "CLAUDE.md",
+        "hash": "1057349024969561970"
+      },
+      {
+        "file": "dist/drawnix/components/arrow-picker.d.ts",
+        "hash": "3663067834674744529"
+      },
+      {
+        "file": "dist/react-board/hooks/use-board.d.ts",
+        "hash": "12617186506711221734"
+      },
+      {
+        "file": "dist/drawnix/components/menu/menu-item-link.d.ts",
+        "hash": "10276271448227262891"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/creation-toolbar.d.ts",
+        "hash": "16067735260065700504"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/app-toolbar/language-switcher-menu.d.ts",
+        "hash": "15100340262855421596"
+      },
+      {
+        "file": "dist/drawnix/index.mjs",
+        "hash": "8518489875144155230"
+      },
+      {
+        "file": "dist/drawnix/plugins/components/emoji.d.ts",
+        "hash": "16661282502924409320"
+      },
+      {
+        "file": "dist/drawnix/plugins/with-ai-image.d.ts",
+        "hash": "14335095704223516845"
+      },
+      {
+        "file": "dist/drawnix/plugins/freehand/with-freehand.d.ts",
+        "hash": "1500510550951835105"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/app-toolbar/app-menu-items.d.ts",
+        "hash": "13777726976544542155"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/freehand-panel/freehand-panel.d.ts",
+        "hash": "14473089792261508339"
+      },
+      {
+        "file": "dist/apps/web/assets/arc-K-33oU77.js",
+        "hash": "16622526074960970237"
+      },
+      {
+        "file": "dist/drawnix/components/ttd-dialog/ttd-dialog-output.d.ts",
+        "hash": "15535495595271057853"
+      },
+      {
+        "file": "dist/drawnix/keys.d.ts",
+        "hash": "11184815851934007625"
+      },
+      {
+        "file": ".nx/workspace-data/file-map.json",
+        "hash": "5534565695157698072"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/app-toolbar/app-toolbar.d.ts",
+        "hash": "16963619428067605511"
+      },
+      {
+        "file": ".git/hooks/prepare-commit-msg.sample",
+        "hash": "4009645067798984574"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/popup-toolbar/popup-toolbar.d.ts",
+        "hash": "12531218000724496866"
+      },
+      {
+        "file": "dist/drawnix/utils/color.d.ts",
+        "hash": "6466978406428981705"
+      },
+      {
+        "file": "dist/drawnix/plugins/freehand/freehand.component.d.ts",
+        "hash": "13869401744993389272"
+      },
+      {
+        "file": "dist/react-text/index.css",
+        "hash": "6321680749415359322"
+      },
+      {
+        "file": "MEMORY.md",
+        "hash": "4160737899864054357"
+      },
+      {
+        "file": "dist/apps/web/assets/pieDiagram-8a3498a8-fNoNMmyQ.js",
+        "hash": "9320774210057366859"
+      },
+      {
+        "file": ".nx/workspace-data/vite-15945558699551388381.hash",
+        "hash": "7367309002484183475"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "11491700288788981784"
+      },
+      {
+        "file": "dist/apps/web/assets/channel-BNJbrf-l.js",
+        "hash": "16406500294644650778"
+      },
+      {
+        "file": "dist/drawnix/constants.d.ts",
+        "hash": "12770804759639773666"
+      },
+      {
+        "file": "dist/drawnix/plugins/with-common.d.ts",
+        "hash": "6508826389894091147"
+      },
+      {
+        "file": "dist/drawnix/plugins/with-mind-extend.d.ts",
+        "hash": "13344987608499480949"
+      },
+      {
+        "file": "dist/apps/web/assets/c4Diagram-3d4e48cf-DK4MV1fL.js",
+        "hash": "12050602552232129068"
+      },
+      {
+        "file": "scripts/publish.js",
+        "hash": "1520134217523309643"
+      },
+      {
+        "file": "dist/apps/web/assets/index-CJkz2cOj.css",
+        "hash": "4610807348513287967"
+      },
+      {
+        "file": "dist/apps/web/assets/journeyDiagram-49397b02-BgVuNenR.js",
+        "hash": "10072648321158815179"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/extra-tools/extra-tools-button.d.ts",
+        "hash": "6686462799973965352"
+      },
+      {
+        "file": "dist/apps/web/assets/mindmap-definition-fc14e90a-DMARr32k.js",
+        "hash": "3260766303155833389"
+      },
+      {
+        "file": ".git/hooks/pre-receive.sample",
+        "hash": "8999430056057037490"
+      },
+      {
+        "file": "dist/apps/web/product_showcase/case-1.png",
+        "hash": "3981621220224677499"
+      },
+      {
+        "file": "dist/react-text/index.mjs",
+        "hash": "3714394233936202779"
+      },
+      {
+        "file": "dist/apps/web/favicon.ico",
+        "hash": "2328269904712553353"
+      },
+      {
+        "file": ".git/hooks/pre-rebase.sample",
+        "hash": "15784748353859782246"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/popup-toolbar/fill-button.d.ts",
+        "hash": "8476204537920034631"
+      },
+      {
+        "file": "dist/drawnix/hooks/use-drawnix.d.ts",
+        "hash": "1684278002455455682"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/popup-toolbar/font-color-button.d.ts",
+        "hash": "4865802050925607830"
+      },
+      {
+        "file": ".nx/workspace-data/playwright-5186013267177752385.hash",
+        "hash": "15374955766148353471"
+      },
+      {
+        "file": ".git/HEAD",
+        "hash": "6460185820263248482"
+      },
+      {
+        "file": ".git/info/exclude",
+        "hash": "2084763735014985388"
+      },
+      {
+        "file": ".git/hooks/pre-commit.sample",
+        "hash": "10258126878297473471"
+      },
+      {
+        "file": "dist/drawnix/components/icons.d.ts",
+        "hash": "141213299414635622"
+      },
+      {
+        "file": "dist/apps/web/assets/blockDiagram-38ab4fdb-BQsxdcK_.js",
+        "hash": "14316971279944179814"
+      },
+      {
+        "file": "dist/drawnix/drawnix.d.ts",
+        "hash": "13315002634820641175"
+      },
+      {
+        "file": "dist/react-text/plugins/with-text.d.ts",
+        "hash": "16255121576224656363"
+      },
+      {
+        "file": "Dockerfile",
+        "hash": "411786577503734820"
+      },
+      {
+        "file": "dist/apps/web/assets/array-BKyUJesY.js",
+        "hash": "8036988771982265853"
+      },
+      {
+        "file": "dist/react-text/plugins/with-link.d.ts",
+        "hash": "18383201415481471429"
+      },
+      {
+        "file": "dist/drawnix/data/filesystem.d.ts",
+        "hash": "1741816124029266402"
+      },
+      {
+        "file": "dist/drawnix/components/dialog/dialog.d.ts",
+        "hash": "199369165037493127"
+      },
+      {
+        "file": "dist/apps/web/product_showcase/case-2.png",
+        "hash": "12890229540853489171"
+      },
+      {
+        "file": "dist/apps/web/assets/init-Gi6I4Gst.js",
+        "hash": "8853054483995382257"
+      },
+      {
+        "file": ".git/hooks/push-to-checkout.sample",
+        "hash": "5194610557431485830"
+      },
+      {
+        "file": "dist/drawnix/components/menu/menu.d.ts",
+        "hash": "1882332685489451421"
+      },
+      {
+        "file": "dist/drawnix/components/ttd-dialog/markdown-to-drawnix.d.ts",
+        "hash": "18323202092649251509"
+      },
+      {
+        "file": "dist/drawnix/components/clean-confirm/clean-confirm.d.ts",
+        "hash": "5094966697606541400"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/theme-toolbar.d.ts",
+        "hash": "2027076066204226581"
+      },
+      {
+        "file": "dist/apps/web/assets/flowDiagram-66a62f08-CNg7JgAL.js",
+        "hash": "770412006296065350"
+      },
+      {
+        "file": "dist/apps/web/assets/clone-BfFLn9Et.js",
+        "hash": "17099442009845941678"
+      },
+      {
+        "file": "dist/apps/web/_headers",
+        "hash": "14907191822224069588"
+      },
+      {
+        "file": "dist/drawnix/utils/utility-types.d.ts",
+        "hash": "6925128108009844852"
+      },
+      {
+        "file": ".nx/workspace-data/jest-7930610538513362720.hash",
+        "hash": "12799139066082590091"
+      },
+      {
+        "file": "dist/drawnix/libs/image-viewer.d.ts",
+        "hash": "14924516446139263782"
+      },
+      {
+        "file": "dist/drawnix/components/popup/link-popup/link-popup.d.ts",
+        "hash": "13535644733240458203"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/popup-toolbar/arrow-mark-button.d.ts",
+        "hash": "706155805090841423"
+      },
+      {
+        "file": "dist/react-text/text.d.ts",
+        "hash": "17071935737307154585"
+      },
+      {
+        "file": "dist/drawnix/data/image.d.ts",
+        "hash": "11654047219277881925"
+      },
+      {
+        "file": "dist/react-text/package.json",
+        "hash": "13379391342042726834"
+      },
+      {
+        "file": "dist/apps/web/logo/logo_drawnix_h_dark.svg",
+        "hash": "7024572616488923923"
+      },
+      {
+        "file": "dist/drawnix/components/tool-button.d.ts",
+        "hash": "17204280451975560472"
+      },
+      {
+        "file": "dist/apps/web/assets/quadrantDiagram-120e2f19-BDUu1Tl1.js",
+        "hash": "2141233858997192520"
+      },
+      {
+        "file": "dist/drawnix/utils/image.d.ts",
+        "hash": "10397053851612080089"
+      },
+      {
+        "file": "dist/drawnix/plugins/freehand/type.d.ts",
+        "hash": "15058785938564629050"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/popup-toolbar/link-button.d.ts",
+        "hash": "4353092234188589891"
+      },
+      {
+        "file": "dist/react-board/plugins/with-pinch-zoom-plugin.d.ts",
+        "hash": "4997492948636131836"
+      },
+      {
+        "file": "dist/apps/web/logo/logo_drawnix_h.svg",
+        "hash": "18320622002392079648"
+      },
+      {
+        "file": ".nx/workspace-data/project-graph.json",
+        "hash": "9795803420748339518"
+      },
+      {
+        "file": "dist/drawnix/transforms/property.d.ts",
+        "hash": "15149368037444494383"
+      },
+      {
+        "file": "dist/drawnix/components/color-picker.d.ts",
+        "hash": "9112491264831359522"
+      },
+      {
+        "file": "dist/react-board/index.css",
+        "hash": "10662511787516260725"
+      },
+      {
+        "file": "dist/react-board/hooks/use-plugin-event.d.ts",
+        "hash": "9768084063304578240"
+      },
+      {
+        "file": "dist/react-text/custom-types.d.ts",
+        "hash": "12707560192795100222"
+      },
+      {
+        "file": "dist/drawnix/components/radio-group.d.ts",
+        "hash": "271006060089441545"
+      },
+      {
+        "file": "dist/apps/web/assets/flowchart-elk-definition-4a651766-CvFPKnho.js",
+        "hash": "3441308623462045231"
+      },
+      {
+        "file": ".nx/workspace-data/vite-10538225559886866074.hash",
+        "hash": "14796046177967607908"
+      },
+      {
+        "file": ".git/hooks/pre-merge-commit.sample",
+        "hash": "5691533144974613569"
+      },
+      {
+        "file": "dist/apps/web/assets/svgDrawCommon-08f97a94-C8YXXnHw.js",
+        "hash": "10390223315611634764"
+      },
+      {
+        "file": "dist/apps/web/assets/infoDiagram-f8f76790-BTnzZdwu.js",
+        "hash": "18101806246017151450"
+      },
+      {
+        "file": "dist/apps/web/assets/createText-2e5e7dd3-BzFJdxMW.js",
+        "hash": "10748475966842141145"
+      },
+      {
+        "file": "dist/drawnix/errors.d.ts",
+        "hash": "13293652542401238406"
+      },
+      {
+        "file": "dist/drawnix/index-DdHx_hHv.js",
+        "hash": "12963543695764712921"
+      },
+      {
+        "file": "dist/drawnix/components/menu/menu-group.d.ts",
+        "hash": "17391170765329500135"
+      },
+      {
+        "file": ".git/config",
+        "hash": "14656440403329541874"
+      },
+      {
+        "file": "dist/apps/web/assets/layout-DFgy80U_.js",
+        "hash": "10571271265444432981"
+      },
+      {
+        "file": "dist/drawnix/components/ttd-dialog/ttd-dialog-submit-shortcut.d.ts",
+        "hash": "4947390074024356996"
+      },
+      {
+        "file": "dist/apps/web/assets/stateDiagram-v2-d93cdb3a-Dmi5AFFv.js",
+        "hash": "5043473322646891932"
+      },
+      {
+        "file": "dist/apps/web/assets/gitGraphDiagram-72cf32ee-Cc40Z4eG.js",
+        "hash": "16747732990778316103"
+      },
+      {
+        "file": "dist/drawnix/components/size-slider.d.ts",
+        "hash": "16549085472461521433"
+      },
+      {
+        "file": "dist/drawnix/index.d.ts",
+        "hash": "1846345638179599691"
+      },
+      {
+        "file": "dist/drawnix/plugins/components/image.d.ts",
+        "hash": "12037303083552254967"
+      },
+      {
+        "file": "dist/react-board/index.mjs",
+        "hash": "9163628257569783845"
+      },
+      {
+        "file": "dist/drawnix/components/ttd-dialog/ttd-dialog-panels.d.ts",
+        "hash": "14891594553315077576"
+      },
+      {
+        "file": "dist/drawnix/components/stack.d.ts",
+        "hash": "5182477697860701162"
+      },
+      {
+        "file": ".git/hooks/applypatch-msg.sample",
+        "hash": "3740124940738663445"
+      },
+      {
+        "file": "README.md",
+        "hash": "14793613137030564244"
+      },
+      {
+        "file": "CFPAGE-DEPLOY.md",
+        "hash": "10730748882287512914"
+      },
+      {
+        "file": "dist/react-board/wrapper.d.ts",
+        "hash": "954269267202314295"
+      },
+      {
+        "file": "dist/apps/web/assets/timeline-definition-85554ec2-lPKCXUUJ.js",
+        "hash": "2667139596492931817"
+      },
+      {
+        "file": ".nx/workspace-data/parsed-lock-file.json",
+        "hash": "4963991276972270619"
+      },
+      {
+        "file": "dist/apps/web/assets/styles-c10674c1-B7iWDE4G.js",
+        "hash": "5639973008498383155"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/extra-tools/menu-items.d.ts",
+        "hash": "4129564486120832605"
+      },
+      {
+        "file": "dist/drawnix/plugins/freehand/freehand.generator.d.ts",
+        "hash": "9922903039751965234"
+      },
+      {
+        "file": "dist/apps/web/assets/stateDiagram-587899a1-BveBM1XC.js",
+        "hash": "12119811730398606934"
+      },
+      {
+        "file": "dist/drawnix/index-B1qiiSJ2.mjs",
+        "hash": "11627235563499792511"
+      },
+      {
+        "file": ".git/hooks/update.sample",
+        "hash": "14696759095365231402"
+      },
+      {
+        "file": "dist/drawnix/plugins/freehand/with-freehand-erase.d.ts",
+        "hash": "7212104444507281620"
+      },
+      {
+        "file": ".nx/workspace-data/d/server-process.json",
+        "hash": "11648969193429798503"
+      },
+      {
+        "file": "dist/drawnix/utils/index.d.ts",
+        "hash": "17773625091855981970"
+      },
+      {
+        "file": "dist/drawnix/plugins/with-pencil.d.ts",
+        "hash": "6956321645435269086"
+      },
+      {
+        "file": ".git/hooks/commit-msg.sample",
+        "hash": "11930680668000581900"
+      },
+      {
+        "file": "dist/apps/web/assets/graph-oUuxIGFu.js",
+        "hash": "9668661488614886715"
+      },
+      {
+        "file": "dist/drawnix/plugins/freehand/with-freehand-create.d.ts",
+        "hash": "14292413355220052274"
+      },
+      {
+        "file": "dist/drawnix/components/ttd-dialog/ttd-dialog-panel.d.ts",
+        "hash": "12552344869288912961"
+      },
+      {
+        "file": "dist/drawnix/components/ttd-dialog/mermaid-to-drawnix.d.ts",
+        "hash": "4644113158456243309"
+      },
+      {
+        "file": "dist/react-board/package.json",
+        "hash": "9790518969799629249"
+      },
+      {
+        "file": "dist/drawnix/data/json.d.ts",
+        "hash": "9898723160392298873"
+      },
+      {
+        "file": "dist/apps/web/assets/path-CbwjOpE9.js",
+        "hash": "1162870528336359682"
+      },
+      {
+        "file": "dist/drawnix/index-BBoE-rOV.mjs",
+        "hash": "4367174738171194960"
+      },
+      {
+        "file": "dist/apps/web/index.html",
+        "hash": "14002233441779674652"
+      },
+      {
+        "file": "dist/drawnix/services/ai-image.d.ts",
+        "hash": "12440924116384357322"
+      },
+      {
+        "file": "dist/drawnix/components/ttd-dialog/ttd-dialog.d.ts",
+        "hash": "3869265238742406763"
+      },
+      {
+        "file": "dist/apps/web/assets/sequenceDiagram-704730f1-BaMwGF3N.js",
+        "hash": "11194017448962803426"
+      },
+      {
+        "file": "dist/react-board/plugins/board.d.ts",
+        "hash": "10449836997867448463"
+      },
+      {
+        "file": "dist/apps/web/assets/linear-zsfHWzfv.js",
+        "hash": "275006320877566585"
+      },
+      {
+        "file": "dist/drawnix/components/menu/menu-separator.d.ts",
+        "hash": "12308129922109024392"
+      },
+      {
+        "file": ".git/hooks/fsmonitor-watchman.sample",
+        "hash": "5519580754951798083"
+      },
+      {
+        "file": "dist/apps/web/assets/index-NcbYMH51.js",
+        "hash": "16706542076696317143"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "15675990793646653371"
+      },
+      {
+        "file": ".git/hooks/post-update.sample",
+        "hash": "16498975149454253769"
+      },
+      {
+        "file": "SECURITY.md",
+        "hash": "8466170552248871032"
+      },
+      {
+        "file": "dist/drawnix/components/ttd-dialog/ttd-dialog-input.d.ts",
+        "hash": "13333816724245503480"
+      },
+      {
+        "file": "dist/apps/web/assets/ordinal-Cboi1Yqb.js",
+        "hash": "4775269658862854909"
+      },
+      {
+        "file": "dist/apps/web/_redirects",
+        "hash": "9923974649136062879"
+      },
+      {
+        "file": "dist/drawnix/data/blob.d.ts",
+        "hash": "10345992690744190368"
+      },
+      {
+        "file": "dist/drawnix/components/menu/menu-item-content.d.ts",
+        "hash": "5150146693318098115"
+      },
+      {
+        "file": "dist/drawnix/components/menu/common.d.ts",
+        "hash": "9846372580411405385"
+      },
+      {
+        "file": "dist/drawnix/components/menu/menu-item-content-radio.d.ts",
+        "hash": "3479710507241769211"
+      },
+      {
+        "file": "dist/drawnix/index.css",
+        "hash": "10556786217960029871"
+      },
+      {
+        "file": "dist/apps/web/assets/ganttDiagram-c361ad54-NoC-pfOA.js",
+        "hash": "12078950472994021485"
+      },
+      {
+        "file": "dist/apps/web/assets/katex-CfZphoad.js",
+        "hash": "5794163093208924045"
+      },
+      {
+        "file": ".git/hooks/pre-push.sample",
+        "hash": "3666369642558647280"
+      },
+      {
+        "file": "dist/react-board/index.js",
+        "hash": "6309869844356402008"
+      },
+      {
+        "file": "dist/apps/web/assets/index-BPiZ3lHd.js",
+        "hash": "10117986637807196407"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "495677036285877461"
+      },
+      {
+        "file": "dist/drawnix/plugins/freehand/smoother.d.ts",
+        "hash": "1594962503299900161"
+      },
+      {
+        "file": "dist/drawnix/i18n.d.ts",
+        "hash": "12975335673781933262"
+      },
+      {
+        "file": "dist/drawnix/components/menu/menu-item-custom.d.ts",
+        "hash": "10513757506117893538"
+      },
+      {
+        "file": "dist/react-text/index.d.ts",
+        "hash": "15644746859339774387"
+      },
+      {
+        "file": ".nx/workspace-data/nx_files.nxt",
+        "hash": "5675287211235390043"
+      },
+      {
+        "file": "dist/apps/web/assets/requirementDiagram-deff3bca-CoJruail.js",
+        "hash": "1598052994730513576"
+      },
+      {
+        "file": "dist/drawnix/plugins/freehand/with-freehand-fragment.d.ts",
+        "hash": "8550901037959753133"
+      },
+      {
+        "file": "dist/apps/web/assets/classDiagram-70f12bd4-C4JpgiTC.js",
+        "hash": "14724755987805527924"
+      },
+      {
+        "file": "dist/drawnix/plugins/with-hotkey.d.ts",
+        "hash": "11402191488559413240"
+      },
+      {
+        "file": "dist/drawnix/types.d.ts",
+        "hash": "7410525270895939245"
+      },
+      {
+        "file": "dist/drawnix/components/popover/popover.d.ts",
+        "hash": "1684846611073541951"
+      },
+      {
+        "file": "dist/apps/web/assets/styles-9a916d00-DsVLch1f.js",
+        "hash": "11427346429079900816"
+      },
+      {
+        "file": "dist/apps/web/robots.txt",
+        "hash": "10683932152271965800"
+      },
+      {
+        "file": "dist/drawnix/components/island.d.ts",
+        "hash": "10912356216503294955"
+      },
+      {
+        "file": "dist/drawnix/utils/property.d.ts",
+        "hash": "4461913301859473665"
+      },
+      {
+        "file": "dist/apps/web/assets/classDiagram-v2-f2320105-CS28EL-3.js",
+        "hash": "10644514979759805720"
+      },
+      {
+        "file": "dist/drawnix/components/ai-image-processor.d.ts",
+        "hash": "2031286779476250869"
+      },
+      {
+        "file": "dist/apps/web/assets/index-CEftZWnS.js",
+        "hash": "13841449695067232728"
+      },
+      {
+        "file": "dist/apps/web/assets/edges-e0da2a9e-B6wah8Pr.js",
+        "hash": "17342221285517321151"
+      },
+      {
+        "file": "dist/drawnix/plugins/freehand/utils.d.ts",
+        "hash": "12863534257542700579"
+      },
+      {
+        "file": "dist/drawnix/plugins/with-text-link.d.ts",
+        "hash": "13557233864695366650"
+      },
+      {
+        "file": "dist/drawnix/data/types.d.ts",
+        "hash": "11859623090548895090"
+      },
+      {
+        "file": "dist/react-board/index.d.ts",
+        "hash": "1993071840535994902"
+      },
+      {
+        "file": "dist/apps/web/assets/xychartDiagram-e933f94c-CCRUvkxw.js",
+        "hash": "6195903210904723494"
+      },
+      {
+        "file": "dist/drawnix/index-CrWg6Lvq.js",
+        "hash": "17125147352302899161"
+      },
+      {
+        "file": "package.json",
+        "hash": "2130079028464628327"
+      },
+      {
+        "file": "dist/drawnix/components/menu/menu-item.d.ts",
+        "hash": "5379090133025138714"
+      },
+      {
+        "file": "dist/drawnix/index.js",
+        "hash": "11230541560553314432"
+      },
+      {
+        "file": "dist/apps/web/assets/sankeyDiagram-04a897e0-CrKXTbAZ.js",
+        "hash": "6805047533701302185"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/popup-toolbar/stroke-button.d.ts",
+        "hash": "14328938818276033094"
+      },
+      {
+        "file": "dist/react-text/index.js",
+        "hash": "14067475991206302009"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "7766048378962244234"
+      },
+      {
+        "file": "dist/drawnix/components/arrow-mark-picker.d.ts",
+        "hash": "4045300779511897897"
+      },
+      {
+        "file": "nx.json",
+        "hash": "3034898727793048719"
+      },
+      {
+        "file": ".nx/workspace-data/d/daemon.log",
+        "hash": "16571995819145160438"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "3494843969422251966"
+      },
+      {
+        "file": ".nx/workspace-data/lockfile.hash",
+        "hash": "14213314773996958102"
+      },
+      {
+        "file": "dist/apps/web/assets/flowDb-956e92f1-BXWzi7DA.js",
+        "hash": "9147453797092497787"
+      },
+      {
+        "file": "CHANGELOG.md",
+        "hash": "460312466618621618"
+      },
+      {
+        "file": ".git/description",
+        "hash": "6589616779641096119"
+      },
+      {
+        "file": "dist/drawnix/components/shape-picker.d.ts",
+        "hash": "15403318186997920201"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
+      },
+      {
+        "file": "dist/drawnix/components/toolbar/pencil-mode-toolbar.d.ts",
+        "hash": "6153764969416912795"
+      },
+      {
+        "file": "dist/react-board/board.d.ts",
+        "hash": "12471647677393919265"
+      },
+      {
+        "file": "dist/drawnix/package.json",
+        "hash": "12455977648154974280"
+      },
+      {
+        "file": "dist/react-board/hooks/use-board-event.d.ts",
+        "hash": "18237381498471577381"
+      },
+      {
+        "file": ".git/hooks/pre-applypatch.sample",
+        "hash": "1595391782482835178"
+      },
+      {
+        "file": "dist/apps/web/assets/erDiagram-9861fffd-xMHsvXaM.js",
+        "hash": "13658105326082880411"
+      },
+      {
+        "file": "dist/apps/web/assets/Tableau10-B-NsZVaP.js",
+        "hash": "12616643511316064891"
+      },
+      {
+        "file": "dist/apps/web/assets/flowDiagram-v2-96b9c2cf-Bn-hcXqa.js",
+        "hash": "14916629586252230077"
+      },
+      {
+        "file": "scripts/release-version.js",
+        "hash": "2022285135070978665"
+      }
+    ],
+    "projectFileMap": {
+      "web-e2e": [
+        {
+          "file": "apps/web-e2e/.eslintrc.json",
+          "hash": "632147010597293032"
+        },
+        {
+          "file": "apps/web-e2e/playwright.config.ts",
+          "hash": "11187256104570284520",
+          "deps": [
+            "npm:@playwright/test",
+            "npm:@nx/playwright",
+            "npm:@nx/devkit"
+          ]
+        },
+        {
+          "file": "apps/web-e2e/project.json",
+          "hash": "11356601415588047577"
+        },
+        {
+          "file": "apps/web-e2e/src/example.spec.ts",
+          "hash": "13432536321268845248",
+          "deps": [
+            "npm:@playwright/test"
+          ]
+        },
+        {
+          "file": "apps/web-e2e/tsconfig.json",
+          "hash": "13413400511057489941"
+        }
+      ],
+      "react-text": [
+        {
+          "file": "packages/react-text/.babelrc",
+          "hash": "2946678488919325452"
+        },
+        {
+          "file": "packages/react-text/.eslintrc.json",
+          "hash": "11012487992710232822"
+        },
+        {
+          "file": "packages/react-text/README.md",
+          "hash": "8687572454120179276"
+        },
+        {
+          "file": "packages/react-text/jest.config.ts",
+          "hash": "9377904189902796448"
+        },
+        {
+          "file": "packages/react-text/package.json",
+          "hash": "13379391342042726834",
+          "deps": [
+            "npm:slate",
+            "npm:slate-dom",
+            "npm:slate-history",
+            "npm:slate-react",
+            "npm:@plait/text-plugins",
+            "npm:@plait/common",
+            "npm:is-hotkey"
+          ]
+        },
+        {
+          "file": "packages/react-text/project.json",
+          "hash": "14121975334081113856"
+        },
+        {
+          "file": "packages/react-text/src/custom-types.ts",
+          "hash": "9315785405817885558",
+          "deps": [
+            "npm:slate",
+            "npm:slate-react",
+            "npm:slate-history",
+            "npm:@plait/common"
+          ]
+        },
+        {
+          "file": "packages/react-text/src/index.ts",
+          "hash": "15644746859339774387"
+        },
+        {
+          "file": "packages/react-text/src/plugins/index.ts",
+          "hash": "9622304948093603198"
+        },
+        {
+          "file": "packages/react-text/src/plugins/with-link.tsx",
+          "hash": "208449598252682669",
+          "deps": [
+            "npm:@plait/common",
+            "npm:@plait/text-plugins"
+          ]
+        },
+        {
+          "file": "packages/react-text/src/plugins/with-text.ts",
+          "hash": "6406317392214174635",
+          "deps": [
+            "npm:slate-react"
+          ]
+        },
+        {
+          "file": "packages/react-text/src/styles/index.scss",
+          "hash": "9996798696881745989"
+        },
+        {
+          "file": "packages/react-text/src/text.spec.tsx",
+          "hash": "1303639451345866333",
+          "deps": [
+            "npm:@testing-library/react",
+            "npm:slate"
+          ]
+        },
+        {
+          "file": "packages/react-text/src/text.tsx",
+          "hash": "2927582665760471370",
+          "deps": [
+            "npm:slate",
+            "npm:is-hotkey",
+            "npm:slate-react",
+            "npm:@plait/common",
+            "npm:react",
+            "npm:slate-history",
+            "npm:@plait/text-plugins"
+          ]
+        },
+        {
+          "file": "packages/react-text/tsconfig.json",
+          "hash": "10374583890390798648"
+        },
+        {
+          "file": "packages/react-text/tsconfig.lib.json",
+          "hash": "11908890256657676622"
+        },
+        {
+          "file": "packages/react-text/tsconfig.spec.json",
+          "hash": "8502671306867960406"
+        },
+        {
+          "file": "packages/react-text/vite.config.ts",
+          "hash": "7196665960646394489",
+          "deps": [
+            "npm:vite",
+            "npm:@vitejs/plugin-react",
+            "npm:vite-plugin-dts",
+            "npm:@nx/vite"
+          ]
+        }
+      ],
+      "web": [
+        {
+          "file": "apps/web/.eslintrc.json",
+          "hash": "11012487992710232822"
+        },
+        {
+          "file": "apps/web/index.html",
+          "hash": "3159025001823710660"
+        },
+        {
+          "file": "apps/web/jest.config.ts",
+          "hash": "12039781921975649444"
+        },
+        {
+          "file": "apps/web/project.json",
+          "hash": "11402676737920401422"
+        },
+        {
+          "file": "apps/web/public/_headers",
+          "hash": "14907191822224069588"
+        },
+        {
+          "file": "apps/web/public/_redirects",
+          "hash": "9923974649136062879"
+        },
+        {
+          "file": "apps/web/public/favicon.ico",
+          "hash": "2328269904712553353"
+        },
+        {
+          "file": "apps/web/public/logo/logo_drawnix_h.svg",
+          "hash": "18320622002392079648"
+        },
+        {
+          "file": "apps/web/public/logo/logo_drawnix_h_dark.svg",
+          "hash": "7024572616488923923"
+        },
+        {
+          "file": "apps/web/public/product_showcase/case-1.png",
+          "hash": "3981621220224677499"
+        },
+        {
+          "file": "apps/web/public/product_showcase/case-2.png",
+          "hash": "12890229540853489171"
+        },
+        {
+          "file": "apps/web/public/robots.txt",
+          "hash": "10683932152271965800"
+        },
+        {
+          "file": "apps/web/public/sitemap.xml",
+          "hash": "2594396978836474258"
+        },
+        {
+          "file": "apps/web/src/app/app.module.scss",
+          "hash": "8887387885984320532"
+        },
+        {
+          "file": "apps/web/src/app/app.spec.tsx",
+          "hash": "15134045491203817279",
+          "deps": [
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/app.tsx",
+          "hash": "17312714601117482825",
+          "deps": [
+            "npm:react",
+            "drawnix",
+            "npm:@plait/core",
+            "npm:localforage"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/initialize-data.ts",
+          "hash": "7490698546971294072",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "apps/web/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/web/src/main.tsx",
+          "hash": "4731961929376199421",
+          "deps": [
+            "npm:react",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "apps/web/src/styles.scss",
+          "hash": "4591588901676275802"
+        },
+        {
+          "file": "apps/web/tsconfig.app.json",
+          "hash": "7232119452847825095"
+        },
+        {
+          "file": "apps/web/tsconfig.json",
+          "hash": "824604371006306276"
+        },
+        {
+          "file": "apps/web/tsconfig.spec.json",
+          "hash": "11378287594513225419"
+        },
+        {
+          "file": "apps/web/vite.config.ts",
+          "hash": "15274865810391561674",
+          "deps": [
+            "npm:vite",
+            "npm:@vitejs/plugin-react",
+            "npm:@nx/vite"
+          ]
+        }
+      ],
+      "react-board": [
+        {
+          "file": "packages/react-board/.babelrc",
+          "hash": "2946678488919325452"
+        },
+        {
+          "file": "packages/react-board/.eslintrc.json",
+          "hash": "11012487992710232822"
+        },
+        {
+          "file": "packages/react-board/README.md",
+          "hash": "14478049055012991781"
+        },
+        {
+          "file": "packages/react-board/jest.config.ts",
+          "hash": "4976080915660679948"
+        },
+        {
+          "file": "packages/react-board/package.json",
+          "hash": "9790518969799629249",
+          "deps": [
+            "npm:@plait/common",
+            "npm:@plait/core",
+            "npm:@plait/draw",
+            "npm:@plait/layouts",
+            "npm:@plait/mind",
+            "npm:@plait/text-plugins",
+            "npm:ahooks",
+            "npm:classnames",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "packages/react-board/project.json",
+          "hash": "11522595993529085081"
+        },
+        {
+          "file": "packages/react-board/src/board.spec.tsx",
+          "hash": "10646734712801889915",
+          "deps": [
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "packages/react-board/src/board.tsx",
+          "hash": "14683596234226780030",
+          "deps": [
+            "npm:roughjs",
+            "npm:@plait/core",
+            "npm:react",
+            "npm:classnames"
+          ]
+        },
+        {
+          "file": "packages/react-board/src/hooks/use-board-event.ts",
+          "hash": "18381741506072781519",
+          "deps": [
+            "npm:@plait/core",
+            "npm:ahooks",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "packages/react-board/src/hooks/use-board.tsx",
+          "hash": "1889414301946993080",
+          "deps": [
+            "npm:@plait/core",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "packages/react-board/src/hooks/use-plugin-event.tsx",
+          "hash": "9907683539514888578",
+          "deps": [
+            "npm:@plait/core",
+            "npm:ahooks"
+          ]
+        },
+        {
+          "file": "packages/react-board/src/index.ts",
+          "hash": "7240420057115476237"
+        },
+        {
+          "file": "packages/react-board/src/plugins/board.ts",
+          "hash": "4594489630621784471",
+          "deps": [
+            "npm:@plait/common",
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/react-board/src/plugins/with-pinch-zoom-plugin.ts",
+          "hash": "11841339555157588303",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/react-board/src/plugins/with-react.tsx",
+          "hash": "3712153045496281656",
+          "deps": [
+            "npm:@plait/common",
+            "npm:@plait/core",
+            "npm:react-dom",
+            "react-text",
+            "npm:slate-react"
+          ]
+        },
+        {
+          "file": "packages/react-board/src/styles/index.scss",
+          "hash": "2034224876798459858"
+        },
+        {
+          "file": "packages/react-board/src/styles/mixins.scss",
+          "hash": "1413780082567578697"
+        },
+        {
+          "file": "packages/react-board/src/wrapper.tsx",
+          "hash": "916162291764803248",
+          "deps": [
+            "npm:@plait/core",
+            "npm:react",
+            "npm:@plait/common"
+          ]
+        },
+        {
+          "file": "packages/react-board/tsconfig.json",
+          "hash": "10374583890390798648"
+        },
+        {
+          "file": "packages/react-board/tsconfig.lib.json",
+          "hash": "11908890256657676622"
+        },
+        {
+          "file": "packages/react-board/tsconfig.spec.json",
+          "hash": "6514620907549802163"
+        },
+        {
+          "file": "packages/react-board/vite.config.ts",
+          "hash": "10140089529024042877",
+          "deps": [
+            "npm:vite",
+            "npm:@vitejs/plugin-react",
+            "npm:vite-plugin-dts",
+            "npm:@nx/vite"
+          ]
+        }
+      ],
+      "drawnix": [
+        {
+          "file": "packages/drawnix/.babelrc",
+          "hash": "2946678488919325452"
+        },
+        {
+          "file": "packages/drawnix/.eslintrc.json",
+          "hash": "11012487992710232822"
+        },
+        {
+          "file": "packages/drawnix/README.md",
+          "hash": "3237312111658447562"
+        },
+        {
+          "file": "packages/drawnix/jest.config.ts",
+          "hash": "11410323816454896807"
+        },
+        {
+          "file": "packages/drawnix/package-lock.json",
+          "hash": "4374832071920655812"
+        },
+        {
+          "file": "packages/drawnix/package.json",
+          "hash": "10214985629962116035",
+          "deps": [
+            "npm:@floating-ui/react",
+            "npm:@plait-board/markdown-to-drawnix",
+            "npm:@plait-board/mermaid-to-drawnix",
+            "npm:mobile-detect",
+            "npm:open-color"
+          ]
+        },
+        {
+          "file": "packages/drawnix/project.json",
+          "hash": "368592395289200165"
+        },
+        {
+          "file": "packages/drawnix/src/components/ai-image-dialog.tsx",
+          "hash": "477897410950608463",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/mind"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/ai-image-processor.tsx",
+          "hash": "8846859463813585188",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/ai-processing-indicator.tsx",
+          "hash": "14916133748442208235"
+        },
+        {
+          "file": "packages/drawnix/src/components/ai-simple-dialog.tsx",
+          "hash": "4524331019836391828",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/arrow-mark-picker.tsx",
+          "hash": "18054673865266321811",
+          "deps": [
+            "npm:classnames",
+            "react-board",
+            "npm:@plait/core",
+            "npm:@plait/common",
+            "npm:@plait/draw"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/arrow-picker.tsx",
+          "hash": "10006582511963537792",
+          "deps": [
+            "npm:classnames",
+            "react-board",
+            "npm:@plait/core",
+            "npm:@plait/common",
+            "npm:@plait/draw"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/clean-confirm/clean-confirm.scss",
+          "hash": "3886527062112062423"
+        },
+        {
+          "file": "packages/drawnix/src/components/clean-confirm/clean-confirm.tsx",
+          "hash": "7912331610589942286",
+          "deps": [
+            "react-board"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/color-picker.scss",
+          "hash": "8648876699529758867"
+        },
+        {
+          "file": "packages/drawnix/src/components/color-picker.tsx",
+          "hash": "3436821942044301124",
+          "deps": [
+            "npm:@plait/core",
+            "react-board"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/dialog/dialog.scss",
+          "hash": "10104672401600422410"
+        },
+        {
+          "file": "packages/drawnix/src/components/dialog/dialog.tsx",
+          "hash": "3316424692288500344",
+          "deps": [
+            "npm:@floating-ui/react"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/icons.tsx",
+          "hash": "7730502006096727917"
+        },
+        {
+          "file": "packages/drawnix/src/components/island.scss",
+          "hash": "1714631676904692316"
+        },
+        {
+          "file": "packages/drawnix/src/components/island.tsx",
+          "hash": "16192806598518938431",
+          "deps": [
+            "npm:classnames"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/menu/common.ts",
+          "hash": "14758069430276770947"
+        },
+        {
+          "file": "packages/drawnix/src/components/menu/menu-group.tsx",
+          "hash": "12241733739051340809"
+        },
+        {
+          "file": "packages/drawnix/src/components/menu/menu-item-content-radio.tsx",
+          "hash": "12029946665199070225"
+        },
+        {
+          "file": "packages/drawnix/src/components/menu/menu-item-content.tsx",
+          "hash": "11113279534550297642"
+        },
+        {
+          "file": "packages/drawnix/src/components/menu/menu-item-custom.tsx",
+          "hash": "17071861063159261700"
+        },
+        {
+          "file": "packages/drawnix/src/components/menu/menu-item-link.tsx",
+          "hash": "17149425396243419321"
+        },
+        {
+          "file": "packages/drawnix/src/components/menu/menu-item.tsx",
+          "hash": "8391216929837059024"
+        },
+        {
+          "file": "packages/drawnix/src/components/menu/menu-separator.tsx",
+          "hash": "8466364982051656347"
+        },
+        {
+          "file": "packages/drawnix/src/components/menu/menu.scss",
+          "hash": "16095104663168182368"
+        },
+        {
+          "file": "packages/drawnix/src/components/menu/menu.tsx",
+          "hash": "13917169466858815923",
+          "deps": [
+            "npm:classnames"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/popover/popover.tsx",
+          "hash": "5017532359196202759",
+          "deps": [
+            "npm:@floating-ui/react"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/popup/link-popup/link-popup.scss",
+          "hash": "4423073082689867153"
+        },
+        {
+          "file": "packages/drawnix/src/components/popup/link-popup/link-popup.tsx",
+          "hash": "6606249800505449232",
+          "deps": [
+            "npm:classnames",
+            "npm:@floating-ui/react",
+            "npm:slate",
+            "npm:slate-react",
+            "npm:@plait/text-plugins",
+            "npm:@plait/common",
+            "react-board"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/processing-overlay.tsx",
+          "hash": "3469108985660491985"
+        },
+        {
+          "file": "packages/drawnix/src/components/radio-group.scss",
+          "hash": "17187875035730317047"
+        },
+        {
+          "file": "packages/drawnix/src/components/radio-group.tsx",
+          "hash": "9216741020920492243",
+          "deps": [
+            "npm:classnames"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/shape-picker.tsx",
+          "hash": "17226630539984951405",
+          "deps": [
+            "npm:classnames",
+            "npm:@plait/core",
+            "npm:@plait/common",
+            "npm:@plait/draw",
+            "react-board"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/simple-processing-overlay.tsx",
+          "hash": "12144089087364161389"
+        },
+        {
+          "file": "packages/drawnix/src/components/size-slider.scss",
+          "hash": "4463558154119551934"
+        },
+        {
+          "file": "packages/drawnix/src/components/size-slider.tsx",
+          "hash": "4951978663722010148",
+          "deps": [
+            "npm:@plait/core",
+            "npm:classnames",
+            "npm:lodash"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/stack.scss",
+          "hash": "885138861275796988"
+        },
+        {
+          "file": "packages/drawnix/src/components/stack.tsx",
+          "hash": "15501700244300623525",
+          "deps": [
+            "npm:classnames"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/tool-button.tsx",
+          "hash": "7822665605306125822",
+          "deps": [
+            "npm:classnames"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/tool-icon.scss",
+          "hash": "18237783483043124492"
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/app-toolbar/app-menu-items.tsx",
+          "hash": "6667065562269887009",
+          "deps": [
+            "react-board",
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/app-toolbar/app-toolbar.tsx",
+          "hash": "7279690250917964901",
+          "deps": [
+            "react-board",
+            "npm:classnames",
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/app-toolbar/language-switcher-menu.tsx",
+          "hash": "6588094125139300338"
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/creation-toolbar.tsx",
+          "hash": "17578399334326779943",
+          "deps": [
+            "npm:classnames",
+            "react-board",
+            "npm:@plait/core",
+            "npm:@plait/mind",
+            "npm:@plait/common",
+            "npm:@plait/draw"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/extra-tools/extra-tools-button.tsx",
+          "hash": "14648788925888857129",
+          "deps": [
+            "react-board",
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/extra-tools/menu-items.tsx",
+          "hash": "11007482264850984178"
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/freehand-panel/freehand-panel.tsx",
+          "hash": "8695548239269809114",
+          "deps": [
+            "npm:classnames",
+            "npm:@plait/core",
+            "npm:@plait/common",
+            "react-board"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/pencil-mode-toolbar.tsx",
+          "hash": "14258655706526490125",
+          "deps": [
+            "react-board"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/popup-toolbar/arrow-mark-button.tsx",
+          "hash": "13000741793230641362",
+          "deps": [
+            "npm:classnames",
+            "npm:@plait/core",
+            "npm:@plait/draw"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/popup-toolbar/fill-button.tsx",
+          "hash": "17650321810954687095",
+          "deps": [
+            "npm:classnames",
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/popup-toolbar/font-color-button.tsx",
+          "hash": "13639047248032634761",
+          "deps": [
+            "npm:classnames",
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/popup-toolbar/link-button.tsx",
+          "hash": "15391654339083151021",
+          "deps": [
+            "npm:classnames",
+            "npm:@plait/core",
+            "npm:@plait/common",
+            "npm:slate-react",
+            "npm:@plait/text-plugins"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/popup-toolbar/popup-toolbar.scss",
+          "hash": "45427525416403701"
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/popup-toolbar/popup-toolbar.tsx",
+          "hash": "9277952009265652289",
+          "deps": [
+            "npm:@plait/core",
+            "react-board",
+            "npm:@floating-ui/react",
+            "npm:classnames",
+            "npm:@plait/mind",
+            "npm:@plait/draw",
+            "npm:@plait/common",
+            "npm:@plait/text-plugins"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/popup-toolbar/stroke-button.tsx",
+          "hash": "7901215464370248164",
+          "deps": [
+            "npm:classnames",
+            "npm:@plait/core",
+            "npm:@plait/common",
+            "npm:@plait/draw"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/theme-toolbar.tsx",
+          "hash": "3401365249323404175",
+          "deps": [
+            "react-board",
+            "npm:classnames",
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/toolbar/zoom-toolbar.tsx",
+          "hash": "9810012340470476862",
+          "deps": [
+            "react-board",
+            "npm:classnames",
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/ttd-dialog/markdown-to-drawnix.tsx",
+          "hash": "12047023807551099074",
+          "deps": [
+            "react-board",
+            "npm:@plait/core",
+            "npm:@plait/mind",
+            [
+              "npm:@plait-board/markdown-to-drawnix",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/ttd-dialog/mermaid-to-drawnix.scss",
+          "hash": "5976325001570578654"
+        },
+        {
+          "file": "packages/drawnix/src/components/ttd-dialog/mermaid-to-drawnix.tsx",
+          "hash": "18000949746218410767",
+          "deps": [
+            "react-board",
+            "npm:@plait/core",
+            "npm:@plait-board/mermaid-to-drawnix",
+            [
+              "npm:@plait-board/mermaid-to-drawnix",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/ttd-dialog/ttd-dialog-input.tsx",
+          "hash": "6762865576268563549"
+        },
+        {
+          "file": "packages/drawnix/src/components/ttd-dialog/ttd-dialog-output.tsx",
+          "hash": "8744643425709273327",
+          "deps": [
+            "npm:@plait/common",
+            "npm:@plait/core",
+            "npm:@plait/draw",
+            "react-board",
+            "npm:@plait/mind"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/ttd-dialog/ttd-dialog-panel.tsx",
+          "hash": "2938750413699336454",
+          "deps": [
+            "npm:classnames"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/components/ttd-dialog/ttd-dialog-panels.tsx",
+          "hash": "9711058222424695068"
+        },
+        {
+          "file": "packages/drawnix/src/components/ttd-dialog/ttd-dialog-submit-shortcut.tsx",
+          "hash": "15795187673610149108"
+        },
+        {
+          "file": "packages/drawnix/src/components/ttd-dialog/ttd-dialog.scss",
+          "hash": "2974159433181379126"
+        },
+        {
+          "file": "packages/drawnix/src/components/ttd-dialog/ttd-dialog.tsx",
+          "hash": "17495987615483054346"
+        },
+        {
+          "file": "packages/drawnix/src/constants.ts",
+          "hash": "14723389874178582339"
+        },
+        {
+          "file": "packages/drawnix/src/constants/color.ts",
+          "hash": "583798862254514045",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/css.d.ts",
+          "hash": "13332216656016485897",
+          "deps": [
+            "npm:csstype"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/data/blob.ts",
+          "hash": "6319195705540029214",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/data/filesystem.ts",
+          "hash": "14784821551855022087",
+          "deps": [
+            "npm:browser-fs-access"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/data/image.ts",
+          "hash": "5911882012076750751",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/mind",
+            "npm:@plait/draw",
+            "npm:@plait/common"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/data/json.ts",
+          "hash": "17909680855096206467",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/data/types.ts",
+          "hash": "12359867064698501978",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/drawnix.spec.tsx",
+          "hash": "4097845269238886015"
+        },
+        {
+          "file": "packages/drawnix/src/drawnix.tsx",
+          "hash": "14703132492345195316",
+          "deps": [
+            "react-board",
+            "npm:@plait/core",
+            "npm:@plait/common",
+            "npm:@plait/draw",
+            "npm:@plait/mind",
+            "npm:mobile-detect",
+            "npm:classnames"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/errors.ts",
+          "hash": "11405058012553969151"
+        },
+        {
+          "file": "packages/drawnix/src/hooks/use-drawnix.tsx",
+          "hash": "3150968152766088981",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/mind",
+            "npm:@plait/draw",
+            "npm:slate",
+            "npm:@plait/common"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/i18n.tsx",
+          "hash": "3867375049885140691"
+        },
+        {
+          "file": "packages/drawnix/src/index.ts",
+          "hash": "1846345638179599691"
+        },
+        {
+          "file": "packages/drawnix/src/keys.ts",
+          "hash": "17488307542562665933",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/libs/image-viewer.ts",
+          "hash": "5788741202844311764"
+        },
+        {
+          "file": "packages/drawnix/src/plugins/components/emoji.tsx",
+          "hash": "5714218265209364625",
+          "deps": [
+            "npm:@plait/mind"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/components/image.tsx",
+          "hash": "1202889732886283989",
+          "deps": [
+            "npm:@plait/common",
+            "npm:classnames"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/freehand/freehand.component.ts",
+          "hash": "11821255919755155966",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/common"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/freehand/freehand.generator.ts",
+          "hash": "7275415220612300130",
+          "deps": [
+            "npm:@plait/common",
+            "npm:@plait/core",
+            "npm:roughjs",
+            "npm:@plait/draw"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/freehand/smoother.ts",
+          "hash": "11773493032496142021",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/freehand/type.ts",
+          "hash": "450409736271458002",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/draw"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/freehand/utils.ts",
+          "hash": "8157308107133800741",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/draw"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/freehand/with-freehand-create.ts",
+          "hash": "14890914642617476186",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/common"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/freehand/with-freehand-erase.ts",
+          "hash": "8948825791414621410",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/common"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/freehand/with-freehand-fragment.ts",
+          "hash": "11673878923713408855",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/common"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/freehand/with-freehand.ts",
+          "hash": "6806837323501898388",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/draw"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/with-ai-image.tsx",
+          "hash": "5749112998012496699",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/draw",
+            "npm:@plait/mind"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/with-common.tsx",
+          "hash": "14942975504619884917",
+          "deps": [
+            "npm:@plait/common",
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/with-hotkey.ts",
+          "hash": "2232761808963781812",
+          "deps": [
+            "npm:@plait/core",
+            "npm:is-hotkey",
+            "npm:@plait/common",
+            "npm:@plait/mind",
+            "npm:@plait/draw"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/with-image.tsx",
+          "hash": "696552696562004583",
+          "deps": [
+            "npm:@plait/common",
+            "npm:@plait/core",
+            "npm:@plait/mind"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/with-mind-extend.tsx",
+          "hash": "11980797861366872307",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/mind",
+            "npm:@plait/common"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/with-pencil.ts",
+          "hash": "10912754346537398894",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/plugins/with-text-link.tsx",
+          "hash": "15829813544438632997",
+          "deps": [
+            "npm:@plait/core",
+            "npm:slate-react",
+            "npm:slate",
+            "npm:@plait/common"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/services/ai-image.ts",
+          "hash": "2381731961513976999"
+        },
+        {
+          "file": "packages/drawnix/src/styles/index.scss",
+          "hash": "9943286866832971453"
+        },
+        {
+          "file": "packages/drawnix/src/styles/theme.scss",
+          "hash": "9025331006933267008"
+        },
+        {
+          "file": "packages/drawnix/src/styles/variables.module.scss",
+          "hash": "10384297594133961680"
+        },
+        {
+          "file": "packages/drawnix/src/transforms/property.ts",
+          "hash": "16746687405417528800",
+          "deps": [
+            "npm:@plait/common",
+            "npm:@plait/core",
+            "npm:@plait/draw",
+            "npm:@plait/text-plugins"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/types.ts",
+          "hash": "2973771668812319511"
+        },
+        {
+          "file": "packages/drawnix/src/utils/ai-processing.ts",
+          "hash": "4303973493702082943"
+        },
+        {
+          "file": "packages/drawnix/src/utils/color.ts",
+          "hash": "1941707257252161030",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/utils/common.ts",
+          "hash": "17124933529978128267",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/utils/image.ts",
+          "hash": "3696227377077108225",
+          "deps": [
+            "npm:@plait/core"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/utils/index.ts",
+          "hash": "557205945459812114"
+        },
+        {
+          "file": "packages/drawnix/src/utils/property.ts",
+          "hash": "8134931258672141582",
+          "deps": [
+            "npm:@plait/core",
+            "npm:@plait/draw",
+            "npm:@plait/mind",
+            "npm:@plait/text-plugins"
+          ]
+        },
+        {
+          "file": "packages/drawnix/src/utils/utility-types.ts",
+          "hash": "3373569003810352105"
+        },
+        {
+          "file": "packages/drawnix/tsconfig.json",
+          "hash": "10374583890390798648"
+        },
+        {
+          "file": "packages/drawnix/tsconfig.lib.json",
+          "hash": "11908890256657676622"
+        },
+        {
+          "file": "packages/drawnix/tsconfig.spec.json",
+          "hash": "6514620907549802163"
+        },
+        {
+          "file": "packages/drawnix/vite.config.ts",
+          "hash": "9451577366096368315",
+          "deps": [
+            "npm:vite",
+            "npm:@vitejs/plugin-react",
+            "npm:vite-plugin-dts",
+            "npm:@nx/vite"
+          ]
+        }
+      ]
+    }
+  }
+}

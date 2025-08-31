@@ -1,0 +1,2 @@
+import type { Tree } from '@nx/devkit';
+export declare function findRootJestConfig(tree: Tree): string | null;

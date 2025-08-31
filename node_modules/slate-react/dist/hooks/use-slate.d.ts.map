@@ -1,0 +1,1 @@
+{"version":3,"file":"use-slate.d.ts","sourceRoot":"","sources":["../../../../packages/slate-react/src/hooks/use-slate.tsx"],"names":[],"mappings":"AACA,OAAO,EAAE,MAAM,EAAE,MAAM,OAAO,CAAA;AAK9B;;GAEG;AAEH,eAAO,MAAM,QAAQ,QAAO,MAgB3B,CAAA;AAyBD;;;;;;GAMG;AAEH,eAAO,MAAM,aAAa;YAAiB,MAAM;OAAK,MAAM;CAI3D,CAAA"}
