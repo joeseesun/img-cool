@@ -39,7 +39,8 @@ import { CleanConfirm } from './components/clean-confirm/clean-confirm';
 import { buildTextLinkPlugin } from './plugins/with-text-link';
 // import { withAIImagePlugin } from './plugins/with-ai-image';
 import { LinkPopup } from './components/popup/link-popup/link-popup';
-import { AIImageDialog } from './components/ai-image-dialog';
+import { AISimpleDialog } from './components/ai-simple-dialog';
+import { SimpleProcessingOverlay } from './components/simple-processing-overlay';
 import { useI18n, I18nProvider } from './i18n';
 
 export type DrawnixProps = {
@@ -81,6 +82,7 @@ export const Drawnix: React.FC<DrawnixProps> = ({
       isPencilMode: false,
       openDialogType: null,
       openCleanConfirm: false,
+      processingImages: new Set(),
     };
   });
 
@@ -118,7 +120,7 @@ export const Drawnix: React.FC<DrawnixProps> = ({
         <div
           className={classNames('drawnix', {
             'drawnix--mobile': appState.isMobile,
-            'ai-processing': appState.isProcessingAI,
+            'ai-processing': appState.processingImages && appState.processingImages.size > 0,
           })}
           ref={containerRef}
         >
@@ -148,13 +150,18 @@ export const Drawnix: React.FC<DrawnixProps> = ({
             <ThemeToolbar></ThemeToolbar>
             <PopupToolbar></PopupToolbar>
             <LinkPopup></LinkPopup>
-            <AIImageDialog 
+            <AISimpleDialog 
               board={board} 
               isOpen={appState.openDialogType === DialogType.aiImage}
               imageUrls={appState.selectedImageUrls || []}
-              onClose={() => updateAppState({ openDialogType: null, selectedImageUrls: [] })}
+              imageElementMap={appState.imageElementMap || {}}
               updateAppState={updateAppState}
             />
+            {/* 渲染正在处理的图片覆盖层 */}
+            {appState.processingImages && Array.from(appState.processingImages).map(elementId => {
+              console.log('Rendering SimpleProcessingOverlay for:', elementId);
+              return <SimpleProcessingOverlay key={elementId} elementId={elementId} />;
+            })}
             <ClosePencilToolbar></ClosePencilToolbar>
             <TTDDialog container={containerRef.current}></TTDDialog>
             <CleanConfirm container={containerRef.current}></CleanConfirm>

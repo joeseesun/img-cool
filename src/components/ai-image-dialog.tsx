@@ -4,16 +4,18 @@ import { MindElement } from '@plait/mind';
 import { processImagesWithAI } from '../services/ai-image';
 import { insertImage } from '../data/image';
 import { DialogType, DrawnixState } from '../hooks/use-drawnix';
+import { setImageProcessingState } from '../utils/ai-processing';
 
 interface AIImageDialogProps {
   board: PlaitBoard | null;
   isOpen: boolean;
   imageUrls: string[];
+  imageElementMap: Record<string, string>;
   onClose: () => void;
   updateAppState: (state: Partial<DrawnixState>) => void;
 }
 
-export const AIImageDialog: React.FC<AIImageDialogProps> = ({ board, isOpen, imageUrls, onClose, updateAppState }) => {
+export const AIImageDialog: React.FC<AIImageDialogProps> = ({ board, isOpen, imageUrls, imageElementMap, onClose, updateAppState }) => {
   const [prompt, setPrompt] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -26,26 +28,42 @@ export const AIImageDialog: React.FC<AIImageDialogProps> = ({ board, isOpen, ima
 
     console.log('Closing dialog and starting processing');
     const currentPrompt = prompt;
-    onClose();
-    updateAppState({ isProcessingAI: true });
+    const currentImageUrls = [...imageUrls];
+    const currentElementMap = {...imageElementMap};
+    
+    // 先关闭对话框并清空相关状态
+    updateAppState({ 
+      openDialogType: null, 
+      selectedImageUrls: [], 
+      imageElementMap: {} 
+    });
 
-    try {
-      const result = await processImagesWithAI(imageUrls, currentPrompt);
+    // 对每张图片独立处理
+    currentImageUrls.forEach(async (imageUrl, index) => {
+      const elementId = currentElementMap[imageUrl];
       
-      if (result.success && result.imageUrl) {
-        const response = await fetch(result.imageUrl);
-        const blob = await response.blob();
-        const file = new File([blob], 'ai-processed.png', { type: 'image/png' });
+      // 给这张图片添加处理中的炫彩边框
+      setImageProcessingState(imageUrl, elementId, true);
+      
+      try {
+        const result = await processImagesWithAI([imageUrl], currentPrompt);
         
-        await insertImage(board, file);
-      } else {
-        alert(`处理失败: ${result.error}`);
+        if (result.success && result.imageUrl) {
+          const response = await fetch(result.imageUrl);
+          const blob = await response.blob();
+          const file = new File([blob], `ai-processed-${index}.png`, { type: 'image/png' });
+          
+          await insertImage(board, file);
+        } else {
+          console.error(`处理图片 ${index + 1} 失败:`, result.error);
+        }
+      } catch (error) {
+        console.error(`处理图片 ${index + 1} 出错:`, error);
+      } finally {
+        // 移除这张图片的处理状态
+        setImageProcessingState(imageUrl, elementId, false);
       }
-    } catch (error) {
-      alert(`处理失败: ${error}`);
-    } finally {
-      updateAppState({ isProcessingAI: false });
-    }
+    });
   };
 
   const handleClose = () => {

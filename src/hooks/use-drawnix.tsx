@@ -43,7 +43,8 @@ export type DrawnixState = {
   openCleanConfirm: boolean;
   linkState?: LinkState | null;
   selectedImageUrls?: string[];
-  isProcessingAI?: boolean;
+  processingImages?: Set<string>;
+  imageElementMap?: Record<string, string>;
 };
 
 export const DrawnixContext = createContext<{

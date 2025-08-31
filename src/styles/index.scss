@@ -4,19 +4,16 @@
 
 @keyframes gradientBorderShift {
     0% { 
-        border-image: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff6b6b) 1;
-    }
-    25% { 
-        border-image: linear-gradient(45deg, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff6b6b, #4ecdc4) 1;
+        border-image: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57) 1;
+        transform: rotate(0deg);
     }
     50% { 
-        border-image: linear-gradient(45deg, #45b7d1, #96ceb4, #feca57, #ff6b6b, #4ecdc4, #45b7d1) 1;
-    }
-    75% { 
-        border-image: linear-gradient(45deg, #96ceb4, #feca57, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4) 1;
+        border-image: linear-gradient(45deg, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff6b6b) 1;
+        transform: rotate(180deg);
     }
     100% { 
-        border-image: linear-gradient(45deg, #feca57, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57) 1;
+        border-image: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57) 1;
+        transform: rotate(360deg);
     }
 }
 
@@ -24,23 +21,21 @@
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Noto Sans', 'Noto Sans CJK SC', 'Microsoft Yahei', 'Hiragino Sans GB', Arial, sans-serif;
     
-    &.ai-processing {
-        .plait-image-element.selected,
-        .plait-mind-element.selected {
-            &::after {
-                content: '';
-                position: absolute;
-                top: -4px;
-                left: -4px;
-                right: -4px;
-                bottom: -4px;
-                border: 3px solid;
-                border-image: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff6b6b) 1;
-                border-radius: 8px;
-                animation: gradientBorderShift 2s ease infinite;
-                pointer-events: none;
-                z-index: 10;
-            }
+    .plait-image-element[data-processing="true"],
+    .plait-mind-element[data-processing="true"] {
+        &::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff6b6b) 1;
+            border-radius: 8px;
+            animation: gradientBorderShift 2s ease infinite;
+            pointer-events: none;
+            z-index: 10;
         }
     }
     .pencil-mode-toolbar {

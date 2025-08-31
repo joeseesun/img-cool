@@ -24,21 +24,30 @@ export const buildDrawnixHotkeyPlugin = (
         event.target instanceof HTMLTextAreaElement;
       
       if (!isTypingNormal && event.key === 'Tab') {
+        // 如果当前有图片正在处理，忽略Tab键
+        if (board.appState?.processingImages && board.appState.processingImages.size > 0) {
+          event.preventDefault();
+          return;
+        }
+        
         const selected = getSelectedElements(board);
         console.log('Tab pressed - Selected elements:', selected);
         
         const imageUrls: string[] = [];
+        const imageElementMap: Record<string, string> = {};
         selected.forEach(element => {
           console.log('Checking element:', element.type, element);
           if (element.type === 'image') {
             const imageElement = element as any;
             if (imageElement.url) {
               imageUrls.push(imageElement.url);
+              imageElementMap[imageElement.url] = imageElement.id;
             }
           } else if (MindElement.isMindElement(board, element) && MindElement.hasImage(element)) {
             const mindElement = element as any;
             if (mindElement.data?.image?.url) {
               imageUrls.push(mindElement.data.image.url);
+              imageElementMap[mindElement.data.image.url] = mindElement.id;
             }
           }
         });
@@ -48,7 +57,8 @@ export const buildDrawnixHotkeyPlugin = (
         if (imageUrls.length > 0) {
           updateAppState({ 
             openDialogType: DialogType.aiImage,
-            selectedImageUrls: imageUrls
+            selectedImageUrls: imageUrls,
+            imageElementMap: imageElementMap
           });
           event.preventDefault();
           return;
