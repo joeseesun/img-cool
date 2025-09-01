@@ -40,6 +40,7 @@ import { buildTextLinkPlugin } from './plugins/with-text-link';
 // import { withAIImagePlugin } from './plugins/with-ai-image';
 import { LinkPopup } from './components/popup/link-popup/link-popup';
 import { AISimpleDialog } from './components/ai-simple-dialog';
+import { AITextToImageDialog } from './components/ai-text-to-image-dialog';
 import { SimpleProcessingOverlay } from './components/simple-processing-overlay';
 import { useI18n, I18nProvider } from './i18n';
 
@@ -82,7 +83,9 @@ export const Drawnix: React.FC<DrawnixProps> = ({
       isPencilMode: false,
       openDialogType: null,
       openCleanConfirm: false,
-      processingImages: new Set(),
+      processingImages: new Set(), // 强制清空
+      selectedImageUrls: [],
+      imageElementMap: {}
     };
   });
 
@@ -144,7 +147,7 @@ export const Drawnix: React.FC<DrawnixProps> = ({
                 afterInit && afterInit(board);
               }}
             ></Board>
-            <AppToolbar></AppToolbar>
+            <AppToolbar updateAppState={updateAppState}></AppToolbar>
             <CreationToolbar></CreationToolbar>
             <ZoomToolbar></ZoomToolbar>
             <ThemeToolbar></ThemeToolbar>
@@ -155,6 +158,11 @@ export const Drawnix: React.FC<DrawnixProps> = ({
               isOpen={appState.openDialogType === DialogType.aiImage}
               imageUrls={appState.selectedImageUrls || []}
               imageElementMap={appState.imageElementMap || {}}
+              updateAppState={updateAppState}
+            />
+            <AITextToImageDialog 
+              board={board} 
+              isOpen={appState.openDialogType === DialogType.textToImage}
               updateAppState={updateAppState}
             />
             {/* 渲染正在处理的图片覆盖层 */}

@@ -1,6 +1,7 @@
 export interface AIImageResponse {
   success: boolean;
   imageUrl?: string;
+  imageUrls?: string[];
   error?: string;
 }
 
@@ -22,6 +23,12 @@ export async function processImagesWithAI(
       image_url: { url }
     }));
 
+    const optimizedPrompt = images.length > 1 
+      ? `图片1、图片2、图片3...（按顺序上传了${images.length}张图片）
+
+${prompt}`
+      : prompt;
+
     const response = await fetch(`${BASE_URL}/chat/completions`, {
       method: 'POST',
       headers: {
@@ -34,7 +41,7 @@ export async function processImagesWithAI(
           {
             role: 'user',
             content: [
-              { type: 'text', text: prompt },
+              { type: 'text', text: optimizedPrompt },
               ...imageContents
             ]
           }
@@ -76,32 +83,44 @@ export async function processImagesWithAI(
       }
     }
 
+    console.log('📝 发送的提示词:', optimizedPrompt);
+    console.log('📤 发送图片数量:', images.length);
     console.log('Full API response content:', fullContent);
 
-    // 先尝试匹配base64格式
-    const base64Match = fullContent.match(/data:image\/[^;]+;base64,([A-Za-z0-9+/=]+)/);
-    if (base64Match) {
-      return {
-        success: true,
-        imageUrl: base64Match[0]
-      };
+    // 按优先级顺序匹配图片URL，避免重复
+    const allImageUrls: string[] = [];
+    
+    // 1. 优先匹配base64格式图片
+    const base64Matches = fullContent.match(/data:image\/[^;]+;base64,[A-Za-z0-9+/=]+/g);
+    if (base64Matches) {
+      allImageUrls.push(...base64Matches);
+    }
+    
+    // 2. 如果没有base64，匹配markdown图片链接格式
+    if (allImageUrls.length === 0) {
+      const urlMatches = fullContent.match(/!\[.*?\]\((https?:\/\/[^\)]+)\)/g);
+      if (urlMatches) {
+        allImageUrls.push(...urlMatches.map(match => {
+          const url = match.match(/!\[.*?\]\((https?:\/\/[^\)]+)\)/);
+          return url ? url[1] : '';
+        }).filter(Boolean));
+      }
+    }
+    
+    // 3. 如果还没有，尝试直接URL格式（避免重复）
+    if (allImageUrls.length === 0) {
+      const directUrls = fullContent.match(/(https?:\/\/[^\s]+\.(png|jpg|jpeg|gif|webp))/gi);
+      if (directUrls) {
+        allImageUrls.push(...directUrls);
+      }
     }
 
-    // 然后尝试匹配markdown图片链接格式
-    const urlMatch = fullContent.match(/!\[.*?\]\((https?:\/\/[^\)]+)\)/);
-    if (urlMatch) {
+    if (allImageUrls.length > 0) {
+      console.log('提取到图片URLs:', allImageUrls.length, '张');
       return {
         success: true,
-        imageUrl: urlMatch[1]
-      };
-    }
-
-    // 最后尝试直接URL格式
-    const directUrlMatch = fullContent.match(/(https?:\/\/[^\s]+\.(png|jpg|jpeg|gif|webp))/i);
-    if (directUrlMatch) {
-      return {
-        success: true,
-        imageUrl: directUrlMatch[1]
+        imageUrl: allImageUrls[0], // 向后兼容
+        imageUrls: allImageUrls
       };
     }
 

@@ -4,7 +4,7 @@ import { MindElement } from '@plait/mind';
 import { processImagesWithAI } from '../services/ai-image';
 import { insertImage } from '../data/image';
 import { DialogType, DrawnixState } from '../hooks/use-drawnix';
-import { setImageProcessingState } from '../utils/ai-processing';
+import { insertPlaceholderImage, replaceImageById, insertImageAtPosition } from '../data/image';
 
 interface AIImageDialogProps {
   board: PlaitBoard | null;
@@ -38,32 +38,41 @@ export const AIImageDialog: React.FC<AIImageDialogProps> = ({ board, isOpen, ima
       imageElementMap: {} 
     });
 
-    // 对每张图片独立处理
-    currentImageUrls.forEach(async (imageUrl, index) => {
-      const elementId = currentElementMap[imageUrl];
+    // 使用占位图片法批量处理（使用已排序的图片数据）
+    const placeholderId = insertPlaceholderImage(board, currentImageUrls, currentElementMap);
+    
+    try {
+      const result = await processImagesWithAI(currentImageUrls, currentPrompt);
       
-      // 给这张图片添加处理中的炫彩边框
-      setImageProcessingState(imageUrl, elementId, true);
-      
-      try {
-        const result = await processImagesWithAI([imageUrl], currentPrompt);
+      if (result.success) {
+        const resultUrls = result.imageUrls || (result.imageUrl ? [result.imageUrl] : []);
         
-        if (result.success && result.imageUrl) {
-          const response = await fetch(result.imageUrl);
+        if (resultUrls.length > 0) {
+          // 使用第一张结果图片替换占位图片
+          const response = await fetch(resultUrls[0]);
           const blob = await response.blob();
-          const file = new File([blob], `ai-processed-${index}.png`, { type: 'image/png' });
+          const file = new File([blob], 'ai-processed.png', { type: 'image/png' });
           
-          await insertImage(board, file);
-        } else {
-          console.error(`处理图片 ${index + 1} 失败:`, result.error);
+          const replaceResult = await replaceImageById(board, placeholderId, file);
+          if (replaceResult) {
+            // 如果有多张结果，在第一张图右侧依次插入
+            for (let i = 1; i < resultUrls.length; i++) {
+              const response = await fetch(resultUrls[i]);
+              const blob = await response.blob();
+              const file = new File([blob], `ai-processed-${i}.png`, { type: 'image/png' });
+              
+              const rightPosition: Point = [
+                replaceResult.position[0] + replaceResult.width + 10 + (replaceResult.width + 10) * (i - 1), 
+                replaceResult.position[1]
+              ];
+              await insertImageAtPosition(board, file, rightPosition, replaceResult.width, i);
+            }
+          }
         }
-      } catch (error) {
-        console.error(`处理图片 ${index + 1} 出错:`, error);
-      } finally {
-        // 移除这张图片的处理状态
-        setImageProcessingState(imageUrl, elementId, false);
       }
-    });
+    } catch (error) {
+      console.error('AI处理出错:', error);
+    }
   };
 
   const handleClose = () => {

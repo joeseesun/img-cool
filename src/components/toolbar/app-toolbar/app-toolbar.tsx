@@ -7,6 +7,7 @@ import {
   RedoIcon,
   TrashIcon,
   UndoIcon,
+  WandIcon,
 } from '../../icons';
 import classNames from 'classnames';
 import {
@@ -24,8 +25,14 @@ import { LanguageSwitcherMenu } from './language-switcher-menu';
 import Menu from '../../menu/menu';
 import MenuSeparator from '../../menu/menu-separator';
 import { useI18n } from '../../../i18n';
+import { DialogType, DrawnixState } from '../../../hooks/use-drawnix';
+import React from 'react';
 
-export const AppToolbar = () => {
+interface AppToolbarProps {
+  updateAppState?: (state: Partial<DrawnixState>) => void;
+}
+
+export const AppToolbar: React.FC<AppToolbarProps> = ({ updateAppState }) => {
   const board = useBoard();
   const { t } = useI18n();
   const container = PlaitBoard.getBoardContainer(board);
@@ -129,6 +136,20 @@ export const AppToolbar = () => {
             }}
           />
         )}
+        
+        <ToolButton
+          key={5}
+          type="icon"
+          icon={WandIcon}
+          visible={true}
+          title="文本生成图片 (⌘G)"
+          aria-label="文本生成图片"
+          onPointerUp={() => {
+            if (updateAppState) {
+              updateAppState({ openDialogType: DialogType.textToImage });
+            }
+          }}
+        />
         
       </Stack.Row>
     </Island>

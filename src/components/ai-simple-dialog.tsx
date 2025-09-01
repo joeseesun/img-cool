@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { PlaitBoard } from '@plait/core';
+import { PlaitBoard, getSelectedElements } from '@plait/core';
 import { processImagesWithAI } from '../services/ai-image';
-import { insertImage } from '../data/image';
+import { insertPlaceholderImage, replaceImageById, insertImageAtPosition } from '../data/image';
 import { DrawnixState } from '../hooks/use-drawnix';
 import { Send } from 'lucide-react';
 
@@ -36,43 +36,67 @@ export const AISimpleDialog: React.FC<AISimpleDialogProps> = ({
     const currentImageUrls = [...imageUrls];
     const currentElementMap = {...imageElementMap};
     
-    // 关闭对话框，开始处理
-    const processingImageIds = Object.values(currentElementMap);
+    // 关闭对话框
     updateAppState({ 
       openDialogType: null, 
       selectedImageUrls: [], 
-      imageElementMap: {},
-      processingImages: new Set(processingImageIds)
+      imageElementMap: {}
     });
     setPrompt('');
 
-    // 对每张图片独立处理
-    currentImageUrls.forEach(async (imageUrl, index) => {
-      const elementId = currentElementMap[imageUrl];
+    // 插入占位图片（使用已排序的图片数据）
+    const placeholderId = insertPlaceholderImage(board, currentImageUrls, currentElementMap);
+    console.log('📝 插入占位图片，元素ID:', placeholderId);
+    
+    try {
+      // 批量处理所有图片
+      const result = await processImagesWithAI(currentImageUrls, currentPrompt);
       
-      try {
-        const result = await processImagesWithAI([imageUrl], currentPrompt);
+      if (result.success) {
+        // 获取所有结果图片URL
+        const resultUrls = result.imageUrls || (result.imageUrl ? [result.imageUrl] : []);
         
-        if (result.success && result.imageUrl) {
-          const response = await fetch(result.imageUrl);
-          const blob = await response.blob();
-          const file = new File([blob], `ai-processed-${index}.png`, { type: 'image/png' });
+        if (resultUrls.length > 0) {
+          console.log('🎯 按API返回顺序处理图片:', resultUrls.length, '张');
           
-          await insertImage(board, file);
+          // 使用第一张结果图片（API返回的第1张）替换占位图片
+          console.log('📍 处理第1张结果图片，替换占位图');
+          const response = await fetch(resultUrls[0]);
+          const blob = await response.blob();
+          const file = new File([blob], 'ai-result-1.png', { type: 'image/png' });
+          
+          const replaceResult = await replaceImageById(board, placeholderId, file);
+          if (replaceResult) {
+            console.log('✅ 第1张结果图片已替换占位图');
+            
+            // 从第2张开始，在第1张右侧依次插入
+            for (let i = 1; i < resultUrls.length; i++) {
+              console.log(`📍 处理第${i + 1}张结果图片，插入右侧位置${i}`);
+              const response = await fetch(resultUrls[i]);
+              const blob = await response.blob();
+              const file = new File([blob], `ai-result-${i + 1}.png`, { type: 'image/png' });
+              
+              // 计算右侧位置：第一张图右边缘 + 10px间距 + (图片宽度+10px间距) * (索引-1)
+              const rightPosition: Point = [
+                replaceResult.position[0] + replaceResult.width + 10 + (replaceResult.width + 10) * (i - 1), 
+                replaceResult.position[1]
+              ];
+              await insertImageAtPosition(board, file, rightPosition, replaceResult.width, i);
+              console.log(`✅ 第${i + 1}张结果图片已插入位置:`, rightPosition);
+            }
+          } else {
+            console.log('❌ 未找到占位图片');
+          }
         } else {
-          console.error(`处理图片 ${index + 1} 失败:`, result.error);
+          console.error('API没有返回图片URL');
         }
-      } catch (error) {
-        console.error(`处理图片 ${index + 1} 出错:`, error);
-      } finally {
-        // 移除这张图片的处理状态
-        updateAppState(prevState => {
-          const newProcessing = new Set(prevState.processingImages);
-          newProcessing.delete(elementId);
-          return { processingImages: newProcessing };
-        });
+      } else {
+        console.error('AI处理失败:', result.error);
       }
-    });
+    } catch (error) {
+      console.error('AI处理出错:', error);
+      // 失败时可以考虑删除占位图片，但为了调试保留
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {

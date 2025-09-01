@@ -24,21 +24,43 @@ export const buildDrawnixHotkeyPlugin = (
         event.target instanceof HTMLTextAreaElement;
       
       if (!isTypingNormal && event.key === 'Tab') {
-        // 如果当前有图片正在处理，忽略Tab键
-        if (board.appState?.processingImages && board.appState.processingImages.size > 0) {
-          event.preventDefault();
-          return;
-        }
-        
         const selected = getSelectedElements(board);
         console.log('Tab pressed - Selected elements:', selected);
         
+        // 按X坐标从左到右排序选中的图片元素
+        const imageElements = selected.filter(element => {
+          return element.type === 'image' || 
+                 (MindElement.isMindElement(board, element) && MindElement.hasImage(element));
+        });
+        
+        console.log('🔍 排序前图片元素:', imageElements.map(el => ({
+          id: el.id,
+          type: el.type, 
+          x: el.points?.[0]?.[0],
+          width: el.points ? Math.abs(el.points[1][0] - el.points[0][0]) : 0
+        })));
+        
+        const sortedSelected = imageElements.sort((a, b) => {
+          const aX = a.points?.[0]?.[0] || 0;
+          const bX = b.points?.[0]?.[0] || 0;
+          return aX - bX; // 从左到右排序
+        });
+        
+        console.log('🎯 排序后图片元素:', sortedSelected.map(el => ({
+          id: el.id,
+          type: el.type,
+          x: el.points?.[0]?.[0],
+          width: el.points ? Math.abs(el.points[1][0] - el.points[0][0]) : 0
+        })));
+
         const imageUrls: string[] = [];
         const imageElementMap: Record<string, string> = {};
-        selected.forEach(element => {
+        
+        sortedSelected.forEach(element => {
           console.log('Checking element:', element.type, element);
           if (element.type === 'image') {
             const imageElement = element as any;
+            console.log('Image element URL:', imageElement.url);
             if (imageElement.url) {
               imageUrls.push(imageElement.url);
               imageElementMap[imageElement.url] = imageElement.id;
@@ -63,6 +85,13 @@ export const buildDrawnixHotkeyPlugin = (
           event.preventDefault();
           return;
         }
+      }
+      
+      // Command+G 快捷键：文本生成图片
+      if (!isTypingNormal && event.key === 'g' && (event.metaKey || event.ctrlKey)) {
+        updateAppState({ openDialogType: DialogType.textToImage });
+        event.preventDefault();
+        return;
       }
       
       if (

@@ -14,6 +14,7 @@ export enum DialogType {
   mermaidToDrawnix = 'mermaidToDrawnix',
   markdownToDrawnix = 'markdownToDrawnix',
   aiImage = 'ai-image',
+  textToImage = 'text-to-image',
 }
 
 export type DrawnixPointerType =
