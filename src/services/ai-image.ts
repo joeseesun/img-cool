@@ -10,8 +10,16 @@ export interface AIImageRequest {
   prompt: string;
 }
 
-const API_KEY = 'sk-o2VwufJTd4Un6aUgTfSwON547FA1Ztz3upNEmepySuPPRgI2';
 const BASE_URL = 'https://api.tu-zi.com/v1';
+
+function getApiKey(): string {
+  const apiKey = localStorage.getItem('drawnix-gemini-api-key');
+  console.log('🔑 从本地存储读取API Key:', apiKey ? `sk-...${apiKey.slice(-6)}` : '未找到');
+  if (!apiKey) {
+    throw new Error('请先在设置中配置API Key');
+  }
+  return apiKey;
+}
 
 export async function processImagesWithAI(
   images: string[],
@@ -29,10 +37,12 @@ export async function processImagesWithAI(
 ${prompt}`
       : prompt;
 
+    const apiKey = getApiKey();
+    
     const response = await fetch(`${BASE_URL}/chat/completions`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${API_KEY}`,
+        'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -51,7 +61,13 @@ ${prompt}`
     });
 
     if (!response.ok) {
-      throw new Error(`API调用失败: ${response.statusText}`);
+      const errorText = await response.text();
+      console.error('❌ API调用失败详情:', {
+        status: response.status,
+        statusText: response.statusText,
+        errorBody: errorText
+      });
+      throw new Error(`API调用失败: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
     let fullContent = '';
@@ -85,6 +101,18 @@ ${prompt}`
 
     console.log('📝 发送的提示词:', optimizedPrompt);
     console.log('📤 发送图片数量:', images.length);
+    
+    // 详细检查发送的图片数据
+    images.forEach((imageUrl, index) => {
+      const isBase64 = imageUrl.startsWith('data:image/');
+      const sizeKB = isBase64 ? Math.round((imageUrl.length * 3) / 4 / 1024) : 0;
+      console.log(`📷 图片${index + 1}:`, {
+        isBase64,
+        sizeKB: sizeKB + 'KB',
+        urlPrefix: imageUrl.substring(0, 50) + '...'
+      });
+    });
+    
     console.log('Full API response content:', fullContent);
 
     // 按优先级顺序匹配图片URL，避免重复

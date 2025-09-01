@@ -15,6 +15,7 @@ export enum DialogType {
   markdownToDrawnix = 'markdownToDrawnix',
   aiImage = 'ai-image',
   textToImage = 'text-to-image',
+  settings = 'settings',
 }
 
 export type DrawnixPointerType =

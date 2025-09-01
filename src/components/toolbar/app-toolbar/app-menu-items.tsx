@@ -3,6 +3,7 @@ import {
   GithubIcon,
   OpenFileIcon,
   SaveFileIcon,
+  SettingsIcon,
   TrashIcon,
 } from '../../icons';
 import { useBoard, useListRender } from '@plait-board/react-board';
@@ -18,7 +19,7 @@ import { loadFromJSON, saveAsJSON } from '../../../data/json';
 import MenuItem from '../../menu/menu-item';
 import MenuItemLink from '../../menu/menu-item-link';
 import { saveAsImage } from '../../../utils/image';
-import { useDrawnix } from '../../../hooks/use-drawnix';
+import { useDrawnix, DialogType } from '../../../hooks/use-drawnix';
 import { useI18n } from '../../../i18n';
 import Menu from '../../menu/menu';
 import { useContext } from 'react';
@@ -156,3 +157,24 @@ export const Socials = () => {
   );
 };
 Socials.displayName = 'Socials';
+
+export const Settings = () => {
+  const { appState, setAppState } = useDrawnix();
+  const { t } = useI18n();
+  return (
+    <MenuItem
+      icon={SettingsIcon}
+      data-testid="settings-button"
+      onSelect={() => {
+        setAppState({
+          ...appState,
+          openDialogType: DialogType.settings,
+        });
+      }}
+      aria-label={t('menu.settings')}
+    >
+      {t('menu.settings')}
+    </MenuItem>
+  );
+};
+Settings.displayName = 'Settings';

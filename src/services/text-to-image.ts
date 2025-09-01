@@ -4,17 +4,26 @@ export interface TextToImageResponse {
   error?: string;
 }
 
-const API_KEY = 'sk-o2VwufJTd4Un6aUgTfSwON547FA1Ztz3upNEmepySuPPRgI2';
 const BASE_URL = 'https://api.tu-zi.com/v1';
+
+function getApiKey(): string {
+  const apiKey = localStorage.getItem('drawnix-gemini-api-key');
+  if (!apiKey) {
+    throw new Error('请先在设置中配置API Key');
+  }
+  return apiKey;
+}
 
 export async function generateImageFromText(prompt: string): Promise<TextToImageResponse> {
   try {
     console.log('🎨 文本生图API调用:', prompt);
     
+    const apiKey = getApiKey();
+    
     const response = await fetch(`${BASE_URL}/images/generations`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${API_KEY}`,
+        'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({

@@ -223,3 +223,47 @@ export const insertImage = async (
     DrawTransforms.insertImage(board, imageItem, startPoint);
   }
 };
+
+export const replaceGeometryWithImage = async (
+  board: PlaitBoard,
+  geometryElementId: string,
+  imageFile: File
+) => {
+  const geometryElement = board.children.find(el => el.id === geometryElementId);
+  if (!geometryElement || geometryElement.type !== 'geometry') {
+    console.error('未找到几何图形元素:', geometryElementId);
+    return null;
+  }
+
+  const dataURL = await getDataURL(imageFile);
+  const image = await loadHTMLImageElement(dataURL);
+  
+  // 计算几何图形的位置和尺寸
+  const points = geometryElement.points as Point[];
+  const position: Point = [points[0][0], points[0][1]];
+  const width = Math.abs(points[1][0] - points[0][0]);
+  const height = Math.abs(points[1][1] - points[0][1]);
+  
+  // 保持宽高比，以几何图形的宽度为准
+  const aspectRatio = image.height / image.width;
+  const imageWidth = width;
+  const imageHeight = imageWidth * aspectRatio;
+  
+  const imageItem = {
+    url: dataURL,
+    width: imageWidth,
+    height: imageHeight,
+  };
+
+  // 删除原几何图形
+  CoreTransforms.removeElements(board, [geometryElement]);
+
+  // 在原位置插入图片
+  DrawTransforms.insertImage(board, imageItem, position);
+
+  return {
+    position,
+    width: imageWidth,
+    height: imageHeight
+  };
+};

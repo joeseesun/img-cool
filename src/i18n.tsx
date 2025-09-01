@@ -56,6 +56,7 @@ export interface Translations {
   'menu.exportImage.png': string;
   'menu.exportImage.jpg': string;
   'menu.cleanBoard': string;
+  'menu.settings': string;
   'menu.github': string;
 
   // Dialog translations
@@ -147,6 +148,7 @@ const translations: Record<Language, Translations> = {
     'menu.exportImage.png': 'PNG',
     'menu.exportImage.jpg': 'JPG',
     'menu.cleanBoard': '清除画布',
+    'menu.settings': '设置',
     'menu.github': 'GitHub',
 
     // Dialog translations
@@ -235,6 +237,7 @@ const translations: Record<Language, Translations> = {
     'menu.exportImage.png': 'PNG',
     'menu.exportImage.jpg': 'JPG',
     'menu.cleanBoard': 'Clear Board',
+    'menu.settings': 'Settings',
     'menu.github': 'GitHub',
 
     // Dialog translations

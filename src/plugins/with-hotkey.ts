@@ -12,6 +12,7 @@ import { BoardCreationMode, setCreationMode } from '@plait/common';
 import { MindPointerType, MindElement } from '@plait/mind';
 import { FreehandShape } from './freehand/type';
 import { ArrowLineShape, BasicShapes } from '@plait/draw';
+import { geometryToImage } from '../utils/geometry-to-image';
 
 export const buildDrawnixHotkeyPlugin = (
   updateAppState: (appState: Partial<DrawnixState>) => void
@@ -31,6 +32,11 @@ export const buildDrawnixHotkeyPlugin = (
         const imageElements = selected.filter(element => {
           return element.type === 'image' || 
                  (MindElement.isMindElement(board, element) && MindElement.hasImage(element));
+        });
+        
+        // 获取几何图形元素
+        const geometryElements = selected.filter(element => {
+          return element.type === 'geometry';
         });
         
         console.log('🔍 排序前图片元素:', imageElements.map(el => ({
@@ -75,6 +81,49 @@ export const buildDrawnixHotkeyPlugin = (
         });
         
         console.log('Image URLs found:', imageUrls);
+        
+        // 处理几何图形转图片
+        if (geometryElements.length > 0) {
+          console.log('🎨 Converting geometry elements to images:', geometryElements.length);
+          console.log('🔍 几何图形详情:', geometryElements.map(el => ({
+            id: el.id,
+            type: el.type,
+            shape: (el as any).shape,
+            points: el.points
+          })));
+          event.preventDefault();
+          
+          geometryToImage(board, geometryElements).then(geometryImageUrls => {
+            console.log('几何图形转换完成:', geometryImageUrls.length, '张图片');
+            console.log('🖼️ 转换的图片URLs长度:', geometryImageUrls.map(url => url.length));
+            
+            const allImageUrls = [...imageUrls, ...geometryImageUrls];
+            const allElementMap = { ...imageElementMap };
+            
+            // 为几何图形创建映射关系
+            geometryElements.forEach((element, index) => {
+              if (geometryImageUrls[index]) {
+                allElementMap[geometryImageUrls[index]] = element.id;
+                console.log(`📍 映射: 图片${index} -> 元素${element.id}`);
+              }
+            });
+            
+            console.log('📋 最终图片列表:', allImageUrls.length, '张');
+            console.log('🗺️ 元素映射:', allElementMap);
+            
+            if (allImageUrls.length > 0) {
+              updateAppState({
+                openDialogType: DialogType.aiImage,
+                selectedImageUrls: allImageUrls,
+                imageElementMap: allElementMap
+              });
+            }
+          }).catch(error => {
+            console.error('几何图形转图片失败:', error);
+          });
+          
+          return;
+        }
         
         if (imageUrls.length > 0) {
           updateAppState({ 

@@ -43,6 +43,7 @@ import { LinkPopup } from './components/popup/link-popup/link-popup';
 import { AISimpleDialog } from './components/ai-simple-dialog';
 import { AITextToImageDialog } from './components/ai-text-to-image-dialog';
 import { SimpleProcessingOverlay } from './components/simple-processing-overlay';
+import { SettingsDialog } from './components/settings-dialog';
 import { useI18n, I18nProvider } from './i18n';
 
 export type DrawnixProps = {
@@ -165,6 +166,10 @@ export const Drawnix: React.FC<DrawnixProps> = ({
             <AITextToImageDialog 
               board={board} 
               isOpen={appState.openDialogType === DialogType.textToImage}
+              updateAppState={updateAppState}
+            />
+            <SettingsDialog 
+              isOpen={appState.openDialogType === DialogType.settings}
               updateAppState={updateAppState}
             />
             {/* 渲染正在处理的图片覆盖层 */}
