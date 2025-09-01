@@ -160,6 +160,26 @@ img-cool/
 
 MIT License
 
+## 🤝 联系与支持
+
+### 打赏二维码
+
+![](https://newimg.t5t6.com/1751870053373-97dc7339-5191-4dde-b891-bf4fb4fe8118.png)
+
+### 公众号二维码
+![](https://newimg.t5t6.com/1751870053371-c2bf9308-2e52-4a15-81b4-6c7490b551cf.jpg)
+
+### 社交头像
+![](https://newimg.t5t6.com/1755628764955-dd051b33-6014-4edb-b365-da1618eb8f3f.png)
+
+### X 账号
+
+https://x.com/vista8
+
+### Github账号
+
+https://github.com/joeseesun/
+
 ---
 
 **🌟 如果你觉得这个项目有用，请给个Star支持一下！**
