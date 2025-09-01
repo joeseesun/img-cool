@@ -25,6 +25,7 @@ import classNames from 'classnames';
 import './styles/index.scss';
 import { buildDrawnixHotkeyPlugin } from './plugins/with-hotkey';
 import { withFreehand } from './plugins/freehand/with-freehand';
+import { withDefaultFill } from './plugins/with-default-fill';
 import { ThemeToolbar } from './components/toolbar/theme-toolbar';
 import { buildPencilPlugin } from './plugins/with-pencil';
 import {
@@ -104,6 +105,7 @@ export const Drawnix: React.FC<DrawnixProps> = ({
 
   const plugins: PlaitPlugin[] = [
     withDraw,
+    withDefaultFill,
     withGroup,
     withMind,
     withMindExtend,
