@@ -18,7 +18,7 @@ export const AITextToImageDialog: React.FC<AITextToImageDialogProps> = ({
 }) => {
   const [prompt, setPrompt] = useState('');
   const [loading, setLoading] = useState(false);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -39,27 +39,65 @@ export const AITextToImageDialog: React.FC<AITextToImageDialogProps> = ({
       updateAppState({ openDialogType: null });
       setPrompt('');
       
+      // 先创建占位图（默认尺寸 512x512，在画布中心）
+      const { Transforms, idCreator } = await import('@plait/core');
+      
+      const centerX = 200;
+      const centerY = 200;
+      const width = 512;
+      const height = 512;
+      
+      const placeholderId = idCreator();
+      
+      // 创建占位图 SVG
+      const placeholderUrl = `data:image/svg+xml;base64,${btoa(`
+        <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:0.3">
+                <animate attributeName="stop-color" values="#4F46E5;#7C3AED;#EC4899;#4F46E5" dur="2s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:0.3">
+                <animate attributeName="stop-color" values="#7C3AED;#EC4899;#4F46E5;#7C3AED" dur="2s" repeatCount="indefinite"/>
+              </stop>
+            </linearGradient>
+          </defs>
+          <rect width="${width}" height="${height}" fill="url(#gradient)" rx="8"/>
+          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-size="16" font-weight="bold">
+            Processing...
+          </text>
+        </svg>
+      `)}`;
+      
+      const placeholderElement = {
+        id: placeholderId,
+        type: 'image',
+        points: [[centerX, centerY], [centerX + width, centerY + height]],
+        url: placeholderUrl,
+        width,
+        height
+      };
+      
+      Transforms.insertNode(board, placeholderElement, [board.children.length]);
+      
       // 调用文本生图API
       const result = await generateImageFromText(currentPrompt);
       
       if (result.success && result.imageUrl) {
         console.log('✅ 文本生图成功:', result.imageUrl);
         
-        if (result.imageUrl.startsWith('data:')) {
-          // base64格式直接处理
-          const response = await fetch(result.imageUrl);
-          const blob = await response.blob();
-          const file = new File([blob], 'text-generated.png', { type: 'image/png' });
-          await insertImage(board, file);
-        } else {
-          // URL格式需要下载
-          const response = await fetch(result.imageUrl);
-          const blob = await response.blob();
-          const file = new File([blob], 'text-generated.png', { type: 'image/png' });
-          await insertImage(board, file);
-        }
+        const response = await fetch(result.imageUrl);
+        const blob = await response.blob();
+        const file = new File([blob], 'text-generated.png', { type: 'image/png' });
+        
+        // 替换占位图
+        const { replaceImageById } = await import('../data/image');
+        await replaceImageById(board, placeholderId, file);
       } else {
         console.error('文本生图失败:', result.error);
+        // 失败时删除占位图
+        const { CoreTransforms } = await import('@plait/core');
+        CoreTransforms.removeElements(board, [placeholderElement]);
       }
       
     } catch (error) {
@@ -70,7 +108,7 @@ export const AITextToImageDialog: React.FC<AITextToImageDialogProps> = ({
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+    if (e.key === 'Enter') {
       e.preventDefault();
       handleSubmit();
     }
@@ -91,7 +129,7 @@ export const AITextToImageDialog: React.FC<AITextToImageDialogProps> = ({
         left: 0,
         right: 0,
         bottom: 0,
-        background: 'rgba(0,0,0,0.4)',
+        background: 'rgba(0,0,0,0.2)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -102,106 +140,55 @@ export const AITextToImageDialog: React.FC<AITextToImageDialogProps> = ({
       <div
         style={{
           background: 'white',
-          borderRadius: '12px',
-          padding: '24px',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
-          minWidth: '500px',
-          maxWidth: '600px'
+          borderRadius: '8px',
+          padding: '16px',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+          minWidth: '400px',
+          maxWidth: '500px',
+          display: 'flex',
+          gap: '12px',
+          alignItems: 'center'
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          marginBottom: '16px'
-        }}>
-          <div style={{ width: '20px', height: '20px', color: '#8B5CF6' }}>
-            {WandIcon}
-          </div>
-          <span style={{
-            fontSize: '18px',
-            fontWeight: '600',
-            color: '#1f2937'
-          }}>
-            文本生成图片
-          </span>
-        </div>
-        
-        <textarea
+        <input
           ref={inputRef}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           onKeyDown={handleKeyPress}
-          placeholder="描述你想要生成的图片..."
+          placeholder="描述想要生成的图片..."
+          disabled={loading}
           style={{
-            width: '100%',
-            height: '120px',
-            padding: '16px',
+            flex: 1,
+            padding: '12px',
             border: '1px solid #e5e7eb',
-            borderRadius: '8px',
+            borderRadius: '6px',
             fontSize: '14px',
             outline: 'none',
-            fontFamily: 'system-ui, -apple-system, sans-serif',
-            resize: 'vertical',
-            lineHeight: '1.5'
+            fontFamily: 'system-ui, -apple-system, sans-serif'
           }}
         />
         
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginTop: '16px'
-        }}>
-          <div style={{
-            fontSize: '12px',
-            color: '#6b7280'
-          }}>
-            Command+Enter 生成
+        <button
+          onClick={handleSubmit}
+          disabled={!prompt.trim() || loading}
+          style={{
+            background: !prompt.trim() || loading ? '#e5e7eb' : '#8B5CF6',
+            color: !prompt.trim() || loading ? '#9ca3af' : 'white',
+            border: 'none',
+            borderRadius: '6px',
+            padding: '12px',
+            cursor: !prompt.trim() || loading ? 'default' : 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minWidth: '48px'
+          }}
+        >
+          <div style={{ width: '16px', height: '16px' }}>
+            {WandIcon}
           </div>
-          
-          <div style={{ display: 'flex', gap: '12px' }}>
-            <button
-              onClick={handleClose}
-              disabled={loading}
-              style={{
-                background: 'transparent',
-                color: '#6b7280',
-                border: '1px solid #e5e7eb',
-                borderRadius: '8px',
-                padding: '10px 20px',
-                cursor: loading ? 'default' : 'pointer',
-                fontSize: '14px'
-              }}
-            >
-              取消
-            </button>
-            
-            <button
-              onClick={handleSubmit}
-              disabled={!prompt.trim() || loading}
-              style={{
-                background: !prompt.trim() || loading ? '#e5e7eb' : '#8B5CF6',
-                color: !prompt.trim() || loading ? '#9ca3af' : 'white',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '10px 20px',
-                cursor: !prompt.trim() || loading ? 'default' : 'pointer',
-                fontSize: '14px',
-                fontWeight: '500',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}
-            >
-              <div style={{ width: '16px', height: '16px' }}>
-                {WandIcon}
-              </div>
-              {loading ? '生成中...' : '生成图片'}
-            </button>
-          </div>
-        </div>
+        </button>
       </div>
     </div>
   );
