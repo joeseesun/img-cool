@@ -1,13 +1,16 @@
+# 🎨 img-cool - AI智能绘图工具
+
 <p align="center">
   <picture style="width: 320px">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/plait-board/drawnix/blob/develop/apps/web/public/logo/logo_drawnix_h.svg?raw=true" />
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/plait-board/drawnix/blob/develop/apps/web/public/logo/logo_drawnix_h_dark.svg?raw=true" />
-    <img src="https://github.com/plait-board/drawnix/blob/develop/apps/web/public/logo/logo_drawnix_h.svg?raw=true" width="360" alt="Drawnix logo and name" />
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/joeseesun/img-cool/blob/main/apps/web/public/logo/logo_drawnix_h.svg?raw=true" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/joeseesun/img-cool/blob/main/apps/web/public/logo/logo_drawnix_h_dark.svg?raw=true" />
+    <img src="https://github.com/joeseesun/img-cool/blob/main/apps/web/public/logo/logo_drawnix_h.svg?raw=true" width="360" alt="img-cool logo" />
   </picture>
 </p>
+
 <div align="center">
   <h2>
-    开源白板工具（SaaS），一体化白板，包含思维导图、流程图、自由画等
+    🤖 AI智能绘图工具，支持文本生图、几何图形AI处理、快捷提示词等功能
   <br />
   </h2>
 </div>
@@ -15,34 +18,29 @@
 <div align="center">
   <figure>
     <a target="_blank" rel="noopener">
-      <img src="https://github.com/plait-board/drawnix/blob/develop/apps/web/public/product_showcase/case-2.png" alt="Product showcase" width="80%" />
+      <img src="https://github.com/joeseesun/img-cool/blob/main/apps/web/public/product_showcase/case-2.png?raw=true" alt="Product showcase" width="80%" />
     </a>
     <figcaption>
       <p align="center">
-        All in one 白板，思维导图、流程图、自由画等
+        AI智能绘图工具，集文本生图、几何AI处理、思维导图于一体
       </p>
     </figcaption>
   </figure>
-  <a href="https://hellogithub.com/repository/plait-board/drawnix" target="_blank">
-    <picture style="width: 250">
-      <source media="(prefers-color-scheme: light)" srcset="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=4dcea807fab7468a962c153b07ae4e4e&claim_uid=zmFSY5k8EuZri43&theme=neutral" />
-      <source media="(prefers-color-scheme: dark)" srcset="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=4dcea807fab7468a962c153b07ae4e4e&claim_uid=zmFSY5k8EuZri43&theme=dark" />
-      <img src="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=4dcea807fab7468a962c153b07ae4e4e&claim_uid=zmFSY5k8EuZri43&theme=neutral" alt="Featured｜HelloGitHub" style="width: 250px; height: 54px;" width="250" height="54"/>
-    </picture>
-  </a>
-
-  <br />
-
-  <a href="https://trendshift.io/repositories/13979" target="_blank"><img src="https://trendshift.io/api/badge/repositories/13979" alt="plait-board%2Fdrawnix | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 </div>
 
-[*English README*](https://github.com/plait-board/drawnix/blob/develop/README_en.md)
+## ✨ 核心特性
 
-## 特性
+### 🤖 AI智能功能 (NEW! 🔥🔥🔥)
+- **文本生图**: 基于自然语言描述生成高质量图像
+- **几何图形AI处理**: 智能转换基础几何图形为AI生成的精美图像
+- **快捷提示词**: 预设模板快速生成内容，支持自定义管理
+- **批量处理**: 同时处理多个选中的几何图形
 
-- 💯 免费 + 开源
-- ⚒️ 思维导图、流程图
-- 🖌 画笔
+### 🎨 绘图功能
+- 💯 免费 + 开源
+- ⚒️ 思维导图、流程图
+- 🖌 画笔和自由绘制
+- 🔷 几何图形：矩形、圆形、三角形等
 - 😀 插入图片
 - 🚀 基于插件机制
 - 🖼️ 📃 导出为 PNG, JSON(`.drawnix`)
@@ -52,94 +50,118 @@
 - 🎨 主题模式
 - 📱 移动设备适配
 - 📈 支持 mermaid 语法转流程图
-- ✨ 支持 markdown 文本转思维导图（新支持 🔥🔥🔥）
+- ✨ 支持 markdown 文本转思维导图
 
+## 🚀 快速开始
 
-## 关于名称
+### 在线体验
 
-***Drawnix***  ，源于绘画(  ***Draw***  )与凤凰(  ***Phoenix***  )的灵感交织。
+立即访问在线版本开始创作：
 
-凤凰象征着生生不息的创造力，而 *Draw* 代表着人类最原始的表达方式。在这里，每一次创作都是一次艺术的涅槃，每一笔绘画都是灵感的重生。
+**🌐 [在线演示 - img-cool](https://img-cool-3b6p7bvce-joeseesuns-projects.vercel.app)**
 
-创意如同凤凰，浴火方能重生，而  ***Drawnix***  要做技术与创意之火的守护者。
+### 一键部署到Vercel
 
-*Draw Beyond, Rise Above.*
+点击下方按钮，一键部署你自己的img-cool实例：
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/joeseesun/img-cool)
 
-## 与 Plait 画图框架
+### 本地开发
 
-*Drawnix* 的定位是一个开箱即用、开源、免费的工具产品，它的底层是 *Plait* 框架，*Plait* 是我司开源的一款画图框架，代表着公司在知识库产品([PingCode Wiki](https://pingcode.com/product/wiki?utm_source=drawnix))上的重要技术沉淀。
+```bash
+# 克隆仓库
+git clone https://github.com/joeseesun/img-cool.git
+cd img-cool
 
-
-Drawnix 是插件架构，与前面说到开源工具比技术架构更复杂一些，但是插件架构也有优势，比如能够支持多种 UI 框架（*Angular、React*），能够集成不同富文本框架（当前仅支持 *Slate* 框架），在开发上可以很好的实现业务的分层，开发各种细粒度的可复用插件，可以扩展更多的画板的应用场景。
-
-
-## 仓储结构
-
-```
-drawnix/
-├── apps/
-│   ├── web                   # drawnix.com
-│   │    └── index.html       # HTML
-├── dist/                     # 构建产物
-├── packages/
-│   └── drawnix/              # 白板应用
-│   └── react-board/          # 白板 React 视图层
-│   └── react-text/           # 文本渲染模块
-├── package.json
-├── ...
-└── README.md
-└── README_en.md
-
-```
-
-## 应用
-
-[*https://drawnix.com*](https://drawnix.com) 是 *drawnix* 的最小化应用。
-
-近期会高频迭代 drawnix.com，直到发布 *Dawn（破晓）* 版本。
-
-
-## 开发
-
-```
+# 安装依赖
 npm install
 
-npm run start
+# 启动开发服务器
+npm start
+
+# 访问 http://localhost:7200
 ```
 
-## Docker
+## 🎯 使用指南
 
+### AI图像生成
+1. **文本生图**: 
+   - 点击魔法棒图标
+   - 输入图像描述（支持快捷提示词）
+   - 等待AI生成
+   
+2. **几何图形AI处理**:
+   - 绘制或选中几何图形
+   - 按Tab键或点击AI处理按钮
+   - 输入转换提示词
+   - 查看AI生成结果
+
+### 快捷提示词
+1. 点击⚡图标查看预设提示词
+2. 在设置中管理自定义提示词模板
+3. 一键应用提示词到输入框
+
+### API配置
+1. 点击右上角设置按钮
+2. 在"API配置"中输入你的AI服务API Key
+3. 保存后即可使用所有AI功能
+
+**🐰 推荐AI服务**: [兔子API - 注册获取免费额度](https://api.tu-zi.com/register?aff=yyaz)
+
+## 🛠 技术架构
+
+### 技术栈
+- **前端框架**: React 18 + TypeScript
+- **构建工具**: Vite + Nx Monorepo
+- **编辑器核心**: Plait编辑器框架
+- **样式方案**: Sass + CSS Modules
+- **AI集成**: 支持多种AI模型接口
+
+### 项目结构
 ```
-docker pull pubuzhixing/drawnix:latest
+img-cool/
+├── apps/
+│   └── web/                 # 主Web应用
+├── packages/
+│   ├── drawnix/            # 核心绘图引擎
+│   ├── react-board/        # 画板组件
+│   └── react-text/         # 文本组件
+├── dist/                   # 构建输出
+└── vercel.json            # Vercel部署配置
 ```
 
-## 依赖
+## 🤝 贡献指南
 
-- [plait](https://github.com/worktile/plait) - 开源画图框架
-- [slate](https://github.com/ianstormtaylor/slate)  - 富文本编辑器框架
-- [floating-ui](https://github.com/floating-ui/floating-ui)  - 一个超级好用的创建弹出层基础库
+欢迎提交Issue和Pull Request！
 
+### 开发流程
+1. Fork本仓库
+2. 创建功能分支: `git checkout -b feature/amazing-feature`
+3. 提交变更: `git commit -m 'feat: add amazing feature'`
+4. 推送分支: `git push origin feature/amazing-feature`
+5. 创建Pull Request
 
+## 📝 更新日志
 
-## 贡献
+### v1.0.0 (2025-09-01)
+- 🎉 首次发布
+- ✨ AI图像生成功能
+- ⚡ 快捷提示词系统
+- 🎨 多样化绘图工具
+- 🚀 Vercel部署支持
 
-欢迎任何形式的贡献：
+## 🙏 致谢
 
-- 提 Bug
+- [Plait](https://github.com/plait-board/plait) - 强大的编辑器框架
+- [Nx](https://nx.dev/) - 优秀的Monorepo工具
+- [Vercel](https://vercel.com/) - 便捷的部署平台
 
-- 贡献代码
+## 📄 许可证
 
-## 感谢支持
+MIT License
 
-特别感谢公司对开源项目的大力支持，也感谢为本项目贡献代码、提供建议的朋友。
+---
 
-<p align="left">
-  <a href="https://pingcode.com?utm_source=drawnix" target="_blank">
-      <img src="https://cdn-aliyun.pingcode.com/static/site/img/pingcode-logo.4267e7b.svg" width="120" alt="PingCode" />
-  </a>
-</p>
+**🌟 如果你觉得这个项目有用，请给个Star支持一下！**
 
-## License
-
-[MIT License](https://github.com/plait-board/drawnix/blob/master/LICENSE)  
+[⭐ Star on GitHub](https://github.com/joeseesun/img-cool) | [🚀 在线体验](https://img-cool-3b6p7bvce-joeseesuns-projects.vercel.app) | [📝 反馈建议](https://github.com/joeseesun/img-cool/issues)
