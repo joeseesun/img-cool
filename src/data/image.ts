@@ -11,7 +11,7 @@ import {
 import { DataURL } from '../types';
 import { getDataURL } from './blob';
 import { MindElement, MindTransforms } from '@plait/mind';
-import { DrawTransforms, DrawElement } from '@plait/draw';
+import { DrawTransforms } from '@plait/draw';
 import { getElementOfFocusedImage } from '@plait/common';
 
 export const loadHTMLImageElement = (dataURL: DataURL) => {
@@ -114,7 +114,7 @@ export const insertPlaceholderImage = (
   const imageElement = {
     id: placeholderId,
     type: 'image',
-    points: [startPoint, [startPoint[0] + width, startPoint[1] + height]],
+    points: [startPoint, [startPoint[0] + width, startPoint[1] + height]] as Point[],
     url: placeholderUrl,
     width,
     height
@@ -140,7 +140,7 @@ export const replaceImageById = async (
   const imageItem = buildImage(image, dataURL, (placeholderElement as any).width);
   
   // 获取占位图片的位置
-  const placeholderPosition = placeholderElement.points[0];
+  const placeholderPosition = placeholderElement.points?.[0] || [0, 0];
   
   // 创建新图片元素在相同位置
   const newImageElement = {
@@ -149,7 +149,7 @@ export const replaceImageById = async (
     points: [
       placeholderPosition, 
       [placeholderPosition[0] + imageItem.width, placeholderPosition[1] + imageItem.height]
-    ],
+    ] as Point[],
     url: imageItem.url,
     width: imageItem.width,
     height: imageItem.height
@@ -186,7 +186,7 @@ export const insertImageAtPosition = async (
   const imageElement = {
     id: idCreator(),
     type: 'image',
-    points: [startPoint, [startPoint[0] + imageItem.width, startPoint[1] + imageItem.height]],
+    points: [startPoint, [startPoint[0] + imageItem.width, startPoint[1] + imageItem.height]] as Point[],
     url: imageItem.url,
     width: imageItem.width,
     height: imageItem.height

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PlaitBoard, getSelectedElements } from '@plait/core';
+import { PlaitBoard, getSelectedElements, Point } from '@plait/core';
 import { MindElement } from '@plait/mind';
 import { processImagesWithAI } from '../services/ai-image';
 import { insertImage } from '../data/image';

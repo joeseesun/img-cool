@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { PlaitBoard } from '@plait/core';
 import { insertImage } from '../data/image';
-import { DrawnixState } from '../hooks/use-drawnix';
+import { DrawnixState, DialogType } from '../hooks/use-drawnix';
 import { generateImageFromText } from '../services/text-to-image';
-import { WandIcon } from './icons';
+import { WandIcon, ZapIcon } from './icons';
+import { PromptTemplate, loadPromptTemplates } from '../services/prompt-templates';
 
 interface AITextToImageDialogProps {
   board: PlaitBoard | null;
@@ -18,11 +19,17 @@ export const AITextToImageDialog: React.FC<AITextToImageDialogProps> = ({
 }) => {
   const [prompt, setPrompt] = useState('');
   const [loading, setLoading] = useState(false);
+  const [promptTemplates, setPromptTemplates] = useState<PromptTemplate[]>([]);
+  const [showTemplates, setShowTemplates] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
+      // 加载提示词模板
+      loadPromptTemplates().then(templates => {
+        setPromptTemplates(templates);
+      });
     }
   }, [isOpen]);
 
@@ -72,7 +79,7 @@ export const AITextToImageDialog: React.FC<AITextToImageDialogProps> = ({
       const placeholderElement = {
         id: placeholderId,
         type: 'image',
-        points: [[centerX, centerY], [centerX + width, centerY + height]],
+        points: [[centerX, centerY], [centerX + width, centerY + height]] as Point[],
         url: placeholderUrl,
         width,
         height
@@ -117,6 +124,15 @@ export const AITextToImageDialog: React.FC<AITextToImageDialogProps> = ({
   const handleClose = () => {
     updateAppState({ openDialogType: null });
     setPrompt('');
+    setShowTemplates(false);
+  };
+
+  const handleTemplateSelect = (template: PromptTemplate) => {
+    setPrompt(template.content);
+    setShowTemplates(false);
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
   if (!isOpen || !board) return null;
@@ -151,23 +167,152 @@ export const AITextToImageDialog: React.FC<AITextToImageDialogProps> = ({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <input
-          ref={inputRef}
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          onKeyDown={handleKeyPress}
-          placeholder="描述想要生成的图片..."
-          disabled={loading}
-          style={{
-            flex: 1,
-            padding: '12px',
-            border: '1px solid #e5e7eb',
-            borderRadius: '6px',
-            fontSize: '14px',
-            outline: 'none',
-            fontFamily: 'system-ui, -apple-system, sans-serif'
-          }}
-        />
+        <div style={{ position: 'relative', flex: 1 }}>
+          {/* 闪电图标按钮 */}
+          <button
+            onClick={() => setShowTemplates(!showTemplates)}
+            style={{
+              position: 'absolute',
+              left: '12px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'none',
+              border: 'none',
+              color: '#6b7280',
+              cursor: 'pointer',
+              padding: '4px',
+              borderRadius: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 10
+            }}
+            title="快捷提示词 (点击查看预设模板)"
+          >
+            <ZapIcon size={16} />
+          </button>
+          
+          <input
+            ref={inputRef}
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            onKeyDown={handleKeyPress}
+            placeholder="描述想要生成的图片..."
+            disabled={loading}
+            style={{
+              width: '100%',
+              padding: '12px 45px 12px 45px',
+              border: '1px solid #e5e7eb',
+              borderRadius: '6px',
+              fontSize: '14px',
+              outline: 'none',
+              fontFamily: 'system-ui, -apple-system, sans-serif',
+              boxSizing: 'border-box'
+            }}
+          />
+          
+          {/* 提示词模板下拉框 */}
+          {showTemplates && (
+            <div style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              right: 0,
+              background: 'white',
+              borderRadius: '12px',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+              zIndex: 1001,
+              marginTop: '8px',
+              minWidth: '400px',
+              overflow: 'hidden'
+            }}>
+              <div style={{ padding: '20px' }}>
+                <h3 style={{
+                  margin: '0 0 16px 0',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  color: '#1f2937'
+                }}>
+                  快捷提示词
+                </h3>
+                <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+                  {promptTemplates.length > 0 ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      {promptTemplates.map(template => (
+                        <button
+                          key={template.id}
+                          onClick={() => handleTemplateSelect(template)}
+                          style={{
+                            width: '100%',
+                            padding: '12px',
+                            border: '1px solid #e5e7eb',
+                            borderRadius: '8px',
+                            background: 'white',
+                            textAlign: 'left',
+                            cursor: 'pointer',
+                            fontSize: '14px',
+                            transition: 'all 0.2s'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#f9fafb';
+                            e.currentTarget.style.borderColor = '#1f2937';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'white';
+                            e.currentTarget.style.borderColor = '#e5e7eb';
+                          }}
+                        >
+                          <div style={{ 
+                            fontWeight: '600', 
+                            color: '#1f2937', 
+                            marginBottom: '4px',
+                            fontSize: '14px'
+                          }}>
+                            {template.name}
+                          </div>
+                          <div style={{ 
+                            fontSize: '12px', 
+                            color: '#6b7280',
+                            lineHeight: '1.4'
+                          }}>
+                            {template.content}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{
+                      padding: '20px',
+                      textAlign: 'center',
+                      color: '#6b7280',
+                      fontSize: '14px'
+                    }}>
+                      暂无提示词模板<br />
+                      <button
+                        onClick={() => {
+                          setShowTemplates(false);
+                          updateAppState({ openDialogType: DialogType.settings });
+                        }}
+                        style={{
+                          marginTop: '8px',
+                          padding: '6px 12px',
+                          border: 'none',
+                          borderRadius: '6px',
+                          background: '#1f2937',
+                          color: 'white',
+                          cursor: 'pointer',
+                          fontSize: '12px'
+                        }}
+                      >
+                        前往设置添加
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
         
         <button
           onClick={handleSubmit}

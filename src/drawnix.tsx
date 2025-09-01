@@ -44,6 +44,7 @@ import { AISimpleDialog } from './components/ai-simple-dialog';
 import { AITextToImageDialog } from './components/ai-text-to-image-dialog';
 import { SimpleProcessingOverlay } from './components/simple-processing-overlay';
 import { SettingsDialog } from './components/settings-dialog';
+import { QRDialog } from './components/qr-dialog';
 import { useI18n, I18nProvider } from './i18n';
 
 export type DrawnixProps = {
@@ -171,6 +172,20 @@ export const Drawnix: React.FC<DrawnixProps> = ({
             <SettingsDialog 
               isOpen={appState.openDialogType === DialogType.settings}
               updateAppState={updateAppState}
+            />
+            <QRDialog 
+              isOpen={appState.openDialogType === DialogType.donation}
+              updateAppState={updateAppState}
+              title="打赏二维码"
+              qrImageUrl="https://newimg.t5t6.com/1751870053373-97dc7339-5191-4dde-b891-bf4fb4fe8118.png"
+              description="感谢支持！"
+            />
+            <QRDialog 
+              isOpen={appState.openDialogType === DialogType.wechat}
+              updateAppState={updateAppState}
+              title="公众号二维码"
+              qrImageUrl="https://newimg.t5t6.com/1751870053371-c2bf9308-2e52-4a15-81b4-6c7490b551cf.jpg"
+              description="扫码关注公众号"
             />
             {/* 渲染正在处理的图片覆盖层 */}
             {appState.processingImages && Array.from(appState.processingImages).map(elementId => {

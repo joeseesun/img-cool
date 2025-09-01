@@ -16,6 +16,8 @@ export enum DialogType {
   aiImage = 'ai-image',
   textToImage = 'text-to-image',
   settings = 'settings',
+  donation = 'donation',
+  wechat = 'wechat',
 }
 
 export type DrawnixPointerType =

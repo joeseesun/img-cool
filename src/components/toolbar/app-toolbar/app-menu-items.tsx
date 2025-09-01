@@ -158,6 +158,42 @@ export const Socials = () => {
 };
 Socials.displayName = 'Socials';
 
+export const Donation = () => {
+  const { appState, setAppState } = useDrawnix();
+  return (
+    <MenuItem
+      onSelect={() => {
+        setAppState({
+          ...appState,
+          openDialogType: DialogType.donation,
+        });
+      }}
+      aria-label="打赏"
+    >
+      💝 打赏
+    </MenuItem>
+  );
+};
+Donation.displayName = 'Donation';
+
+export const WeChat = () => {
+  const { appState, setAppState } = useDrawnix();
+  return (
+    <MenuItem
+      onSelect={() => {
+        setAppState({
+          ...appState,
+          openDialogType: DialogType.wechat,
+        });
+      }}
+      aria-label="公众号"
+    >
+      📱 公众号
+    </MenuItem>
+  );
+};
+WeChat.displayName = 'WeChat';
+
 export const Settings = () => {
   const { appState, setAppState } = useDrawnix();
   const { t } = useI18n();
